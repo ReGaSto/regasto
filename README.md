@@ -1,6 +1,17 @@
 # regasto
 Repozytorium projektu grupy seminaryjnej
 
+Uwaga!!!!
+
+W katalogu SOURCE FILES/CONFIG
+jest plik db.php - tam są dane bazy danych
+
+Trzeba treść pliku db_zamien_lokalnie_z_db.php zamienić z db.php aby wszystko działało lokalnie (baza danych)
+
+Potem ten plik w repozytorium będzie pomijany dzięki .gitignore
+
+################################ Dalej Readme z Yii2
+
 <p align="center">
     <a href="https://github.com/yiisoft" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
