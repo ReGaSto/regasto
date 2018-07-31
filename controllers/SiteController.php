@@ -63,6 +63,16 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
+    
+        public function actionOferta()
+    {
+        return $this->render('oferta');
+    }
+    
+          public function actionStomatolodzy()
+    {
+        return $this->render('stomatolodzy');
+    }
 
     /**
      * Login action.
