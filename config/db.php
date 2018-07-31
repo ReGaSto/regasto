@@ -2,9 +2,9 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=pp43704_regasto',
-    'username' => 'pp43704_regasto',
-    'password' => 'regasto7',
+    'dsn' => 'mysql:host=localhost;dbname=regasto',
+    'username' => 'root',
+    'password' => '',
     'charset' => 'utf8',
 
     // Schema cache options (for production environment)

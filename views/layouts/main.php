@@ -39,7 +39,7 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'O nas', 'url' => ['/site/about']],
-            ['label' => 'Zarezerwuj termin wizyty', 'url' => ['/site/index']],
+            ['label' => 'Zarezerwuj termin wizyty', 'url' => ['/site/rezerwacja']],
             ['label' => 'Oferta', 'url' => ['/site/oferta']],
             ['label' => 'Stomatolodzy', 'url' => ['/site/stomatolodzy']],
             ['label' => 'Kontakt', 'url' => ['/site/contact']],
