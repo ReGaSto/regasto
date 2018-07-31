@@ -40,8 +40,8 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'O nas', 'url' => ['/site/about']],
             ['label' => 'Zarezerwuj termin wizyty', 'url' => ['/site/index']],
-            ['label' => 'Zabiegi Stomatologiczne', 'url' => ['/site/index']],
-            ['label' => 'Stomatolodzy', 'url' => ['/site/index']],
+            ['label' => 'Oferta', 'url' => ['/site/oferta']],
+            ['label' => 'Stomatolodzy', 'url' => ['/site/stomatolodzy']],
             ['label' => 'Kontakt', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Logowanie', 'url' => ['/site/login']]
