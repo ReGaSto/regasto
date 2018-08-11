@@ -1,2 +1,4 @@
 11.08.2018
+Odignorowałem vendor cały katalog potem bower-assets
 Test Pulla - PO odignorowaniu bower-assets w Vendor
+Zmieniłem hash rejestracji Argon2I na Default w SiteCOntroller.php
