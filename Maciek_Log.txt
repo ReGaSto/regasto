@@ -1,0 +1,15 @@
+Dodano rejestrację i logowanie z bazy danych wykorzystywana tabela to new_user.
+sprawdzanie poprawności e-mail i wymaganie pól hasło, login i e-mail.
+Plik User.php w folderze models zastąpiono NewUser.php
+resztę potrzebnych plików dostosowano:
+
+SiteController.php
+main.php
+login.php
+register.php   (nowy)
+LoginForm.php
+web.php
+
+przesłano register.sql do testów rejestracji i logowania  19:54 11.08.2018
+
+więcej nie pamiętam ale to ostatecznie wystarczy do poprawnego działania
