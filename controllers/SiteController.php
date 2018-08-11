@@ -152,7 +152,8 @@ class SiteController extends Controller
             {
                 $model->username = $_POST['NewUser']['username'];
                 $model->email = $_POST['NewUser']['email'];
-                $model->password = password_hash($_POST['NewUser']['password'], PASSWORD_ARGON2I);
+                //Zmiana PASSWORD_ARGON2I - na PASSWORD_DEFAULT B.Bugala - Argon2 - dla większej kompatybilności
+                $model->password = password_hash($_POST['NewUser']['password'], PASSWORD_DEFAULT);
                 $model->authKey = md5(random_bytes(5));
                 $model->accessToken = password_hash(random_bytes(10),  PASSWORD_DEFAULT);
                 if($model->save())
