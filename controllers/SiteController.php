@@ -1,7 +1,7 @@
 <?php
 
 namespace app\controllers;
-
+//Dodano use Yii ... M. Kurant//
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\NewUser;
 
 class SiteController extends Controller
 {
@@ -140,4 +141,31 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+    //Dodano formularz rejestracji M.Kurant//
+    public function actionRegister()
+    {
+        $model = new NewUser();
+        
+        if ($model->load(Yii::$app->request->post()))
+        {
+            if ($model->validate())
+            {
+                $model->username = $_POST['NewUser']['username'];
+                $model->email = $_POST['NewUser']['email'];
+                $model->password = password_hash($_POST['NewUser']['password'], PASSWORD_ARGON2I);
+                $model->authKey = md5(random_bytes(5));
+                $model->accessToken = password_hash(random_bytes(10),  PASSWORD_DEFAULT);
+                if($model->save())
+                {
+                    return $this->redirect(['login']);
+                }
+            }
+        }
+        
+        return $this->render('register', [
+            'model' => $model,
+        ]);
+
+    }
+    
 }
