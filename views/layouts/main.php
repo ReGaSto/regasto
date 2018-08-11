@@ -35,27 +35,25 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
+    //Dodano rejestrację i zmieniono Nav widget M. Kurant//
+    $navItem = [
+    ['label' => 'O nas', 'url' => ['/site/about']],
+    ['label' => 'Zarezerwuj termin wizyty', 'url' => ['/site/rezerwacja']],
+    ['label' => 'Oferta', 'url' => ['/site/oferta']],
+    ['label' => 'Stomatolodzy', 'url' => ['/site/stomatolodzy']],
+    ['label' => 'Kontakt', 'url' => ['/site/contact']],
+    ];
+    
+    if(Yii::$app->user->isGuest)
+    {
+        array_push($navItem, ['label' => 'Logowanie', 'url' => ['/site/login']], ['label' => 'Rejestracja', 'url' => ['/site/register']]);
+    } else {
+        array_push($navItem, '<li>'. Html::beginForm(['/site/logout'], 'post'). Html::submitButton('Logout ('. Yii::$app->user->identity->username . ')', ['class' => 'btn btn-link logout']).Html::endForm().'</li>');
+    }
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'O nas', 'url' => ['/site/about']],
-            ['label' => 'Zarezerwuj termin wizyty', 'url' => ['/site/rezerwacja']],
-            ['label' => 'Oferta', 'url' => ['/site/oferta']],
-            ['label' => 'Stomatolodzy', 'url' => ['/site/stomatolodzy']],
-            ['label' => 'Kontakt', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Logowanie', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
+        'items' => $navItem
     ]);
     NavBar::end();
     ?>
