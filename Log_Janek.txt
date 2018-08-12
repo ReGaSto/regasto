@@ -1,0 +1,2 @@
+Zmieniłem właściwość PrettyUrl z true na false - łatwiej jest testować poszczególne funkcjonalności
+Dodałem model Wizyty oraz cały CRUD dla tabeli wizyty i widget datepicker
