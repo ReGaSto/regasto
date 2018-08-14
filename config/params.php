@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'adminEmail' => 'bartek.bugala@gmail.com',
+    'adminEmail' => 'regasto.wsb@wp.pl',   //ustawił M. Kurant
 ];
