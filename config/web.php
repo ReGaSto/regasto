@@ -34,7 +34,16 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'transport' => [                            //Skonfigurowano formularz kontaktowy M. Kurant
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.wp.pl',
+                'username' => 'regasto.wsb@wp.pl',
+                'password' => 'regastowsb',
+                'port' => '465',
+                'encryption' => 'tls',
+            ],
+            //'viewPath' => '@common/mail',
+            'useFileTransport' => false,  //oryginalnie było true  M. Kurant
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
