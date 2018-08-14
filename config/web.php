@@ -40,7 +40,7 @@ $config = [
                 'username' => 'regasto.wsb@wp.pl',
                 'password' => 'regastowsb',
                 'port' => '465',
-                'encryption' => 'tls',
+                'encryption' => 'ssl',
             ],
             //'viewPath' => '@common/mail',
             'useFileTransport' => false,  //oryginalnie było true  M. Kurant
