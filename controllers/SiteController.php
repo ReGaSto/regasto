@@ -65,11 +65,6 @@ class SiteController extends Controller
         return $this->render('index');
     }
     
-    public function actionRezerwacja()
-    {
-        return $this->render('rezerwacja');
-    }
-    
     public function actionOferta()
     {
         return $this->render('oferta');

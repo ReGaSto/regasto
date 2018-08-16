@@ -35,10 +35,11 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    //Dodano rejestrację i zmieniono Nav widget M. Kurant//
+    //Dodano rejestrację i zmieniono Nav widget M. Kurant
+    //Dodano rejestrację wizyt do Menu B. Bugala
     $navItem = [
     ['label' => 'O nas', 'url' => ['/site/about']],
-    ['label' => 'Zarezerwuj termin wizyty', 'url' => ['/site/rezerwacja']],
+    ['label' => 'Rezerwacja wizyty', 'url' => ['/wizyty']],
     ['label' => 'Oferta', 'url' => ['/site/oferta']],
     ['label' => 'Stomatolodzy', 'url' => ['/site/stomatolodzy']],
     ['label' => 'Kontakt', 'url' => ['/site/contact']],
