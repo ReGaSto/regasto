@@ -2,8 +2,8 @@ Zmieniłem właściwość PrettyUrl z true na false - łatwiej jest testować po
 Dodałem model Wizyty oraz cały CRUD dla tabeli wizyty i widget datepicker
 2018-08-13 : dodany model Stomatolodzy, lista rozwijana w formularzu create dla stomatologów
 2018-08-13 : zmiana rules() w Wizyty żeby id_pacjenta nie był wymagany, 
-			dostosowanie WizytyController do nowego klucza głównego tabeli wizyty tj. składającefgo się tylko
-			z daty, godziny i id_stomatologa
+			dostosowanie WizytyController do nowego klucza głównego tabeli wizyty tj. składającego się tylko
+			z daty, godziny i id_stomatologa - TO BARDZO WAŻNE, ABY ZMIENIĆ USTAWIENIA W BAZIE ODPOWIEDNIO< BEZ TEGO TO NIE ZADZIAŁA!
 2018-08-14 : dołożenie WizytySearch, modyfikacja metod actionCreate, actionDelete w taki sposób, aby aktualizowały
 			kolumnę id_pacjenta a nie usuwały dane rekordy.
 			zmiana actionUpdate tak, aby kasowała rekord zmienianej wizyty i prekierowywała do formularza rezerwacji nowej.
