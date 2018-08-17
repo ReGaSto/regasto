@@ -8,6 +8,9 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
+use app\models\WizytySearch;
+use yii\bootstrap\Modal;
 
 /**
  * WizytyController implements the CRUD actions for Wizyty model.
@@ -35,12 +38,12 @@ class WizytyController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Wizyty::find(),
-        ]);
-
+        $searchModel = new WizytySearch();
+        $dataProvider = $searchModel->searchBooked(Yii::$app->request->get());
+        
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
         ]);
     }
 
@@ -53,10 +56,10 @@ class WizytyController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id_pacjenta, $id_stomatologa, $data, $godzina)
+    public function actionView($id_stomatologa, $data, $godzina)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id_pacjenta, $id_stomatologa, $data, $godzina),
+            'model' => $this->findModel($id_stomatologa, $data, $godzina),
         ]);
     }
 
@@ -67,17 +70,30 @@ class WizytyController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Wizyty();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id_pacjenta' => $model->id_pacjenta, 'id_stomatologa' => $model->id_stomatologa, 'data' => $model->data, 'godzina' => $model->godzina]);
-        }
-
+        $searchModel = new WizytySearch();
+        $dataProvider = $searchModel->searchVacant(Yii::$app->request->get());
+        
         return $this->render('create', [
-            'model' => $model,
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
         ]);
+        
+        
+       
     }
-
+    
+    public function actionBook($id_stomatologa, $data, $godzina)
+    {
+        $model = $this->findModel($id_stomatologa, $data, $godzina);
+        $model->id_pacjenta = 2;//tutaj należy wprowadzić zmienną zawierającą id zalogowanego pacjenta
+        $model->update();
+        
+        
+        return $this->redirect(['index']);
+     
+        
+    }
+    
     /**
      * Updates an existing Wizyty model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -88,17 +104,24 @@ class WizytyController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id_pacjenta, $id_stomatologa, $data, $godzina)
+    public function actionUpdate($id_stomatologa, $data, $godzina)
     {
-        $model = $this->findModel($id_pacjenta, $id_stomatologa, $data, $godzina);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id_pacjenta' => $model->id_pacjenta, 'id_stomatologa' => $model->id_stomatologa, 'data' => $model->data, 'godzina' => $model->godzina]);
-        }
-
+        //JFi: poniżej wyzerowanie numeru pacjenta w rekordzie - co oznacza, że ten rekord tj. termin, data i staomatolog wracają do puli wolnych terminów.
+        //przydałoby się tutaj wstawić jakies wyskakujące okienko informujące, 
+        //że aby zmienić rezerwację należy skasować dotychczasową rezerwację i wybrać nową wizytę.
+        //i że po skasowaniu nie będzie możliwe przerwania procesu aktualizacji.
+        $model = $this->findModel($id_stomatologa, $data, $godzina);
+        $model->id_pacjenta = 0;
+        $model->update();
+        
+        $searchModel = new WizytySearch();
+        $dataProvider = $searchModel->searchVacant(Yii::$app->request->get());
+        
         return $this->render('update', [
-            'model' => $model,
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
         ]);
+              
     }
 
     /**
@@ -111,12 +134,19 @@ class WizytyController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id_pacjenta, $id_stomatologa, $data, $godzina)
+    public function actionDelete($id_stomatologa, $data, $godzina)
     {
-        $this->findModel($id_pacjenta, $id_stomatologa, $data, $godzina)->delete();
+       $model = $this->findModel($id_stomatologa, $data, $godzina);
+       $model->id_pacjenta = 0;
+       $model->update();
+        
+       
+       return $this->redirect(['index']);
+       
+      
 
-        return $this->redirect(['index']);
     }
+    
 
     /**
      * Finds the Wizyty model based on its primary key value.
@@ -128,9 +158,9 @@ class WizytyController extends Controller
      * @return Wizyty the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id_pacjenta, $id_stomatologa, $data, $godzina)
+    protected function findModel($id_stomatologa, $data, $godzina)
     {
-        if (($model = Wizyty::findOne(['id_pacjenta' => $id_pacjenta, 'id_stomatologa' => $id_stomatologa, 'data' => $data, 'godzina' => $godzina])) !== null) {
+        if (($model = Wizyty::findOne(['id_stomatologa' => $id_stomatologa, 'data' => $data, 'godzina' => $godzina])) !== null) {
             return $model;
         }
 

@@ -28,7 +28,7 @@ class Wizyty extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_pacjenta', 'id_stomatologa', 'data', 'godzina'], 'required'],
+            [['id_pacjenta','id_stomatologa', 'data', 'godzina'], 'required'],
             [['id_pacjenta', 'id_stomatologa'], 'integer'],
             [['data', 'godzina'], 'safe'],
         ];

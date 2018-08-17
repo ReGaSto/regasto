@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
 use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
 use kartik\time\TimePicker;
@@ -9,28 +8,24 @@ use app\models\Stomatolodzy;
 use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Wizyty */
-
-$this->title = Yii::t('app', 'Zmieniasz wizytę na...');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Wizyty zarezerwowane'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Zmiana wizyty');
+/* @var $model app\models\WizytySearch */
+/* @var $form yii\widgets\ActiveForm */
 ?>
-<div class="wizyty-update">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
 
 <div class="wizyty-search">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'action' => ['create'],
+        'method' => 'get',
+    ]); ?>
 
    
 
-    <?= $form->field($searchModel, 'id_stomatologa')->dropDownList(ArrayHelper::map(Stomatolodzy::find()
+    <?= $form->field($model, 'id_stomatologa')->dropDownList(ArrayHelper::map(Stomatolodzy::find()
         ->select(['imie','nazwisko','id_stomatologa'])->all(), 'id_stomatologa', 'displayName'), 
                                                                      ['class' => 'form-control inline-block']);?>
 
-    <?= $form->field($searchModel, 'data')->widget(DatePicker::classname(), [
+    <?= $form->field($model, 'data')->widget(DatePicker::classname(), [
     'language'=>'pl',//niestety dla pl to nie działa
     'options' => ['placeholder' => 'Wprowadz datę ...'],
     'pluginOptions' => [
@@ -43,7 +38,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Zmiana wizyty');
         ]
     ]);?>
 
-    <?= $form->field($searchModel, 'godzina')->widget(TimePicker::classname(), [
+    <?= $form->field($model, 'godzina')->widget(TimePicker::classname(), [
        
     'pluginOptions' => [
         'template' => 'dropdown',
@@ -58,27 +53,9 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Zmiana wizyty');
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Szukaj'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Wyczysc formularz', ['update'], ['class' => 'btn btn-default']) ?>
+        <?= Html::a('Wyczysc formularz', ['create'], ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
-
-</div>
-
-    
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            'data',
-            'godzina',
-            'id_stomatologa',
-            ['class' => 'yii\grid\ActionColumn',
-             'template' => '{view}',
-        ],
-    ]
-       
-   ]); ?>
-    
 
 </div>
