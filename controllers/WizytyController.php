@@ -85,7 +85,7 @@ class WizytyController extends Controller
     public function actionBook($id_stomatologa, $data, $godzina)
     {
         $model = $this->findModel($id_stomatologa, $data, $godzina);
-        $model->id_pacjenta = 2;//tutaj należy wprowadzić zmienną zawierającą id zalogowanego pacjenta
+        $model->id_pacjenta = (Yii::$app->user->identity->id);//Dodano M.Kurant //tutaj należy wprowadzić zmienną zawierającą id zalogowanego pacjenta
         $model->update();
         
         
