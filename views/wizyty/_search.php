@@ -52,7 +52,7 @@ use yii\helpers\ArrayHelper;
     ]);?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Szukaj'), ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Potwierdź'), ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Wyczysc formularz', ['create'], ['class' => 'btn btn-default']) ?>
     </div>
 
