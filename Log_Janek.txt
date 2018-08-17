@@ -6,3 +6,24 @@ Dodałem model Wizyty oraz cały CRUD dla tabeli wizyty i widget datepicker
 			z daty, godziny i id_stomatologa
 2018-08-14 : dołożenie WizytySearch, modyfikacja metod actionCreate, actionDelete w taki sposób, aby aktualizowały
 			kolumnę id_pacjenta a nie usuwały dane rekordy.
+			zmiana actionUpdate tak, aby kasowała rekord zmienianej wizyty i prekierowywała do formularza rezerwacji nowej.
+			
+			UWAGA1:
+			Aby system rezerwacji działał poprawnie należy w bazie zmieć oznaczenie wolnych terminów. 
+			Rekordy wolnych terminów w tabeli wizyty mają wartość 0 w kolumnie `id_pacjenta`.
+			Stąd też ten nr id (zero) jest numerem zrezerwowanym i nie należy używać go do numeracji pacjentów.
+			
+			UWAGA2 - co należy jeszcze poprawić w tym mechanizmie (informacyjnie):
+			1) wyświetlanie imion i nazwisk stomatologów zamiast id (chodzi tylko o tabelki z wizytami, bo w formularzach 
+			   wyświetlają się imiona i nazwiska)
+			2) w przypadku zmiany wizyty (update) - przed realizacją akcji actionUpdate koniecznie należy wyświetlić jakiegoś popup'a, 
+			   lightbox'a z przyciskami czy coś takiego, żeby pacjent potwierdził anulowanie danej wizyty i chęć przejścia do rezerwacji 
+			   innej na jej miejsce. Myślę, że to dobre miejsce na wykorzystanie metody yii2 beforeAction() czy coś w tym rodzaju.
+			   Spróbuję się z tym jeszcze pobawić i zobaczymy.
+			   Generalnie nie podoba mi się ten update w naszej aplikacji - jest zbyt toporny i niezbyt przyjazny, np. nie zapewnia 
+			   użytkownikowi możliwości wycofania się z wprowadzanych zmian w rezerwacjach wizyt i pozostanie przy tej wyjściowej itd. 
+			3) sprawdzić dlaczego ten fragment kodu nie działa: models\WIzytySearch, wiersz nr 50: "->where(['>=','data','DATE(NOW())'])"
+			   Jeśli tego nie poprawimy, to klient będzie miał możliwość zarezerwowania wizyt wstecz (ta komenda coś nie dociera do bazy,
+			   a jej zadaniem jest aby GridView nie wyświetlał wolnych terminów przed aktualną datą...)
+			4) zmiast domyślnych ikonek akcji w tabelkach umieścić normalne kolorowe przyciski (OPCJONALNIE)
+			
