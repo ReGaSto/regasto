@@ -89,7 +89,7 @@ class WizytySearch extends Wizyty
         
            
         $query->select(['data','godzina','id_stomatologa'])
-        ->where(['>','id_pacjenta', 0])
+        ->where(['=','id_pacjenta', Yii::$app->user->identity->id])
         ->orderBy([
             'data' => SORT_ASC,
             'godzina' => SORT_ASC,

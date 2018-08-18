@@ -19,10 +19,14 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Rezerwacja wizyty');
         <?= Html::a(Yii::t('app', 'Powrót do zarezerwowanych wizyt'), ['index'], ['class' => 'btn btn-info']) ?>
     </p>
     
+    <h3>1) Proszę wprowadzić kryteria wyszukiwania dostępnych terminów wizyt</h3>
+    
     <?= $this->render('_search', [
         'model' => $searchModel,
     ]) ?>
-   
+    
+    <h3>2) Dostępne terminy wizyt u naszych specjalistów</h3>
+    <p>Proszę kliknąć ikonę oka przy wybranym terminie wizyty, aby dokończyć proces rezerwacji.</p>   
 
    <?= GridView::widget([
         'dataProvider' => $dataProvider,
