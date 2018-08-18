@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.8.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 11 Sie 2018, 19:48
+-- Czas generowania: 18 Sie 2018, 23:21
 -- Wersja serwera: 10.1.31-MariaDB
--- Wersja PHP: 7.2.3
+-- Wersja PHP: 7.1.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -37,6 +37,15 @@ CREATE TABLE `new_user` (
   `accessToken` char(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Zrzut danych tabeli `new_user`
+--
+
+INSERT INTO `new_user` (`id`, `username`, `email`, `password`, `authKey`, `accessToken`) VALUES
+(1, 'JF', 'janflpk@yahoo.com', '$2y$10$3wME8LpVcF3uA29VW0SbAeXNhtaiM.7gqOBm7r9XsBlMolH3e4kXe', '03da98c9d7ec253c57a224fe7e978d63', '$2y$10$vLtd7LQa5LS///FGGTfureTeQRP4do.2zm2QyXqRhCnNtbRkfS3jW'),
+(2, 'JF2', 'janflpk@yahoo.com', '$2y$10$j9DL71gIAmKFCO3R1DtV5.XpMN21uLIFXumAYnYlAVQFU0s2UAcHq', '8ec0e0fd3e1608fcfdbb1ebe3e2569fb', '$2y$10$GV4X4WJmFDdwwzeMljxLxuBk4bRr/nDd2mDn85AcnUoehEqfvjV.m'),
+(3, 'JF3', 'janflpk@yahoo.com', '$2y$10$x1fYU6mnXH7vsCkaGyaGveo7tTNZOiNK5ktKnvqswElpfGZ8DFUk2', '2852c1d93f717c803f5d0b63e5e65eac', '$2y$10$Pjssi3If5p8.0NqszuyVK.CaR27wssBD2P.Ph0S2itpb2lcYzIlkq');
+
 -- --------------------------------------------------------
 
 --
@@ -45,8 +54,8 @@ CREATE TABLE `new_user` (
 
 CREATE TABLE `pacjenci` (
   `id_pacjenta` int(11) NOT NULL,
-  `imie` text CHARACTER SET utf8 NOT NULL,
-  `nazwisko` text CHARACTER SET utf8 NOT NULL,
+  `imie_pac` text CHARACTER SET utf8 NOT NULL,
+  `nazwisko_pac` text CHARACTER SET utf8 NOT NULL,
   `nazwa_uzytkownika` varchar(11) CHARACTER SET utf8 DEFAULT NULL,
   `haslo` varchar(11) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin2;
@@ -55,7 +64,7 @@ CREATE TABLE `pacjenci` (
 -- Zrzut danych tabeli `pacjenci`
 --
 
-INSERT INTO `pacjenci` (`id_pacjenta`, `imie`, `nazwisko`, `nazwa_uzytkownika`, `haslo`) VALUES
+INSERT INTO `pacjenci` (`id_pacjenta`, `imie_pac`, `nazwisko_pac`, `nazwa_uzytkownika`, `haslo`) VALUES
 (1, 'Adam', 'Kowalski', 'akowal', 'ak21'),
 (2, 'Filip', 'Kos', 'fkos', 'fk43');
 
@@ -78,8 +87,8 @@ CREATE TABLE `stomatolodzy` (
 --
 
 INSERT INTO `stomatolodzy` (`id_stomatologa`, `imie`, `nazwisko`, `nazwa_uzytkownika`, `haslo`) VALUES
-(1, 'Jan', 'Trzepadłek', 'jtrzepa', 'jt32'),
-(2, 'Bonawentura', 'Trąba', 'btraba', 'bt456');
+(1, 'Jan', 'TrzepadĹ‚ek', 'jtrzepa', 'jt32'),
+(2, 'Bonawentura', 'TrÄ…ba', 'btraba', 'bt456');
 
 -- --------------------------------------------------------
 
@@ -88,7 +97,7 @@ INSERT INTO `stomatolodzy` (`id_stomatologa`, `imie`, `nazwisko`, `nazwa_uzytkow
 --
 
 CREATE TABLE `wizyty` (
-  `id_pacjenta` int(11) NOT NULL,
+  `id_pacjenta` int(11) DEFAULT NULL,
   `id_stomatologa` int(11) NOT NULL,
   `data` date NOT NULL,
   `godzina` time NOT NULL
@@ -99,8 +108,20 @@ CREATE TABLE `wizyty` (
 --
 
 INSERT INTO `wizyty` (`id_pacjenta`, `id_stomatologa`, `data`, `godzina`) VALUES
-(1, 1, '2018-08-03', '09:30:00'),
-(2, 2, '2018-08-03', '10:30:00');
+(0, 1, '2018-08-03', '09:30:00'),
+(0, 1, '2018-08-13', '09:00:00'),
+(0, 1, '2018-08-13', '09:30:00'),
+(0, 1, '2018-08-13', '10:00:00'),
+(2, 1, '2018-08-13', '10:30:00'),
+(0, 1, '2018-08-13', '11:00:00'),
+(0, 1, '2018-08-13', '11:30:00'),
+(0, 1, '2018-08-21', '09:00:00'),
+(0, 1, '2018-09-13', '13:00:00'),
+(0, 2, '2018-08-03', '10:30:00'),
+(2, 2, '2018-08-14', '23:30:00'),
+(0, 2, '2018-08-15', '13:30:00'),
+(0, 2, '2018-08-22', '10:00:00'),
+(2, 2, '2018-09-19', '12:00:00');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -129,6 +150,12 @@ ALTER TABLE `stomatolodzy`
   ADD UNIQUE KEY `haslo` (`haslo`);
 
 --
+-- Indeksy dla tabeli `wizyty`
+--
+ALTER TABLE `wizyty`
+  ADD PRIMARY KEY (`id_stomatologa`,`data`,`godzina`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -136,7 +163,7 @@ ALTER TABLE `stomatolodzy`
 -- AUTO_INCREMENT dla tabeli `new_user`
 --
 ALTER TABLE `new_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT dla tabeli `pacjenci`
