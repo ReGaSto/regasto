@@ -26,4 +26,7 @@ Dodałem model Wizyty oraz cały CRUD dla tabeli wizyty i widget datepicker
 			   Jeśli tego nie poprawimy, to klient będzie miał możliwość zarezerwowania wizyt wstecz (ta komenda coś nie dociera do bazy,
 			   a jej zadaniem jest aby GridView nie wyświetlał wolnych terminów przed aktualną datą...)
 			4) zmiast domyślnych ikonek akcji w tabelkach umieścić normalne kolorowe przyciski (OPCJONALNIE)
+2018-08-18 : 1) WizytySearch.php wiersz 92 - dodano odnośnik do id zalogowanego użytkownika, aby wyświetlały się wyłącznie wizyty tego
+				użytkownika.
+			 2) view/create.php - wiersze 22 i 28 opisy dla użytkownika
 			
