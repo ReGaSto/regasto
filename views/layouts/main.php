@@ -71,7 +71,7 @@ AppAsset::register($this);
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; Gabinet Stomatologiczny "Ząbek" <?= date('Y') ?></p>
-
+        <p><a class="pull-left" style="padding-left: 10px" href="..\views\panel\logpanel.php">Panel pracownika</a></p>
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
