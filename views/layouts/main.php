@@ -40,6 +40,7 @@ AppAsset::register($this);
     $navItem = [
     ['label' => 'O nas', 'url' => ['/site/about']],
     ['label' => 'Rezerwacja wizyty', 'url' => ['/wizyty']],
+    ['label' => 'Rezerwacja V2', 'url' => ['/kalendarz']],
     ['label' => 'Oferta', 'url' => ['/site/oferta']],
     ['label' => 'Stomatolodzy', 'url' => ['/site/stomatolodzy']],
     ['label' => 'Kontakt', 'url' => ['/site/contact']],
