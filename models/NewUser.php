@@ -29,6 +29,7 @@ class NewUser extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
+            [['username', 'email'], 'unique'],    //pola muszą być jednoznaczne M. Kurant
             [['username', 'password', 'email'], 'required'],    //pola wymagane M. Kurant
             [['username', 'email'], 'string', 'max' => 80],
             [['password', 'authKey', 'accessToken'], 'string', 'max' => 255],
