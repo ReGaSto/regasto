@@ -74,7 +74,7 @@ echo<<<END
 <th>PESEL</th>
 <th>Tel.</th>
 <th>E-mail</th>
-<th>Login</th>
+<th>Notatka</th>
 </thead></tr><tr>
 END;
 
