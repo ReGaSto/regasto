@@ -1,0 +1,84 @@
+<?php   
+        require_once 'naglowek.php';
+        require_once 'menu.php';
+?>
+        <h1>Panel pracownika</h1>
+        <?php
+
+        if (isset($_POST['zaloguj'], $_POST['login'], $_POST['ranga'])) {
+                 
+            $uzyt = $_POST['login'];
+            $hasl = password_hash($_POST['haslo'], PASSWORD_DEFAULT);
+            $rang = $_POST['ranga'];
+            $sql = "SELECT ranga FROM new_user WHERE username=$uzyt AND password=$hasl";
+            $result = mysqli_query($con, $sql);
+            $row = mysqli_fetch_row($result);
+            echo $hasl;
+            echo $row[0];
+            echo $rang;
+            if ($rang[0] === $row[0]) {
+                   
+                $_SESSION['zalogowany'] = true;
+                $_SESSION['login'] = $uzyt;
+                $_SESSION['ranga'] = $rang[0];
+                echo "Zostałeś pomyślnie zalogowany <b>$uzyt</b>!";
+                echo $rang[0];
+                } 
+            else 
+                {
+                $_SESSION = array();
+                $_POST = array();
+                echo "Zła ranga";
+                echo '<p><a class="page-link" href="logpanel.php">Spróbuj zalogować się jeszcze raz</a></p>';
+            }
+        } else {
+                $_SESSION = array();
+                $_POST = array();
+            echo '<p>Zaloguj się by zacząć pracę.</p>';
+           
+            ?>
+            <form action="powitanie.php" method="POST"> 
+                <div class="form-group">
+                    <div class="row">
+                    <div class="col">
+                    <label for="login">Login</label>
+                    <input class="form-control" type="text" name="login" /><br />
+                    </div>
+                    <div class="col">
+                    <label for="haslo">Hasło</label>
+                    <input class="form-control" type="password" name="haslo" /><br />
+                    </div>
+                    </div>
+                    <div class="row">
+                    <label>Ranga:</label>
+                    </div>
+                    <div class="form-check">
+                    <input id="r1" class="form-check-input" type="radio" name="ranga" value="1">
+                    <label class="form-check-label" for="r1">
+                        Administrator
+                    </label>
+                    </div>
+                    <div class="form-check">
+                    <input id="r2" class="form-check-input" type="radio" name="ranga" value="2">
+                    <label class="form-check-label" for="r2">
+                        Lekarz
+                    </label>
+                    </div>
+                    <div class="form-check">
+                    <input id="r3" class="form-check-input" type="radio" name="ranga" value="3">
+                    <label class="form-check-label" for="r3">
+                        Operator
+                    </label>
+                    </div>
+                    </div>
+                    <div class="col">
+                    </br>
+                    <input class="btn btn-success btn-lg btn-block" type="submit" name="zaloguj" value="Zaloguj" />
+                    </div>
+                    
+            </form>
+    <?php
+            }   
+          require_once 'stopka.php';  
+          ?>
+
