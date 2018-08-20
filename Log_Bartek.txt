@@ -6,5 +6,8 @@ Zmieniłem hash rejestracji Argon2I na Default w SiteCOntroller.php
 Wgranie Kalendarza - 2 wersja rezerwacji wizyty (Work in Progress) - Ajax w PHP
 20.08.2018
 Ajax Zintegrowany z Kalendarzem w Yii2 - nie potrzebny zewnętrzny plik - Kontroler działa
+Uruchomiłem mechanizm, który uniemożliwia dodanie wizyty, gdy już w danym terminie data + godzina jest wizyta.
+Dodałem podstawowy access control w wizyty i kalendarz
+Drobne zmiany komunikatów.
 
-TODO: Logika Biznesowa wyboru stomatologów, limitu wizyt na dzień, CRUD dla Admina, CRUD dla Klienta
+TODO: Logika Biznesowa wyboru stomatologów, CRUD dla Admina, CRUD dla Klienta
