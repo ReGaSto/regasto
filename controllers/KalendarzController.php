@@ -92,7 +92,7 @@ class KalendarzController extends Controller
     if (Yii::$app->request->isAjax) {
         $data = Yii::$app->request->get();
         $my_array = explode(":", $data['ajaxTitle']);
-        $my_array2 = explode(":", $data['ajaxStart']);        
+        $my_array2 = explode(": ", $data['ajaxStart']);        
         $model->title=$my_array[0];
         $model->created_date=$my_array2[0];
         $model->load($_GET);

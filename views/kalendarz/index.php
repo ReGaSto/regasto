@@ -25,7 +25,7 @@ $myUsername = \Yii::$app->user->identity->username;
 
 
 $JSCode = <<<EOF
-function(start) {
+function(start, end) {
    var title =  '$myUsername';;
 
    var eventData;
