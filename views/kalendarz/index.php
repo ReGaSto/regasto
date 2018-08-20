@@ -30,7 +30,8 @@ function(start, end) {
 
    var eventData;
    eventData = {title: title, start: start};
-
+   
+   var terazdata =  start;
    $('#w0').fullCalendar('renderEvent', eventData, true);
    
    $('#w0').fullCalendar('unselect');
@@ -41,15 +42,14 @@ function(start, end) {
        type: 'GET',
        data: { ajaxTitle: ajaxTitle, ajaxStart: ajaxStart},
        success: function (json) {
-                    alert('Added Successfully');
+                    alert('Zarezerwowano termin na: ' + terazdata.format());
                 },
         error: function () {
-            alert("error");
+            alert("Błąd - skontaktuj się z nami w celu rejestracji wizyty");
         }
     }); 
 }
 EOF;
-
 $JSEventClick = <<<EOF
 function(calEvent, jsEvent, view) {
 
@@ -72,8 +72,8 @@ EOF;
   <form>
     <fieldset>
         <label for="name">Stomatolodzy</label><br>
-      Marek Barek <input type="radio" name="stomat" value="1"><br>
-         Farek Czarek <input type="radio" name="stomat" value="2">
+          Marek Barek <input type="radio" name="stomat" value="1"><br>
+          Farek Czarek <input type="radio" name="stomat" value="2">
  
       <!-- Allow form submission with keyboard without duplicating the dialog button -->
       <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
@@ -93,9 +93,9 @@ EOF;
                     'selectHelper' => true,
                     
                     'eventLimit'=> true, // for all non-agenda views
-                    'views'=> [
-                        'agenda'=> [
-                            'eventLimit'=> 1 // adjust to 6 only for agendaWeek/agendaDay
+                    'views' => [
+                        'week' => [
+                            'eventLimit' => 1 // adjust to 6 only for agendaWeek/agendaDay
                         ]
                     ],
 
@@ -120,6 +120,7 @@ EOF;
                        'end'=> '20:00', // an end time (6pm in this example)
                     ],
                     'selectConstraint' => 'businessHours',
+                    'selectOverlap' => false,
                   
               ],
             
