@@ -2,3 +2,9 @@
 Odignorowałem vendor cały katalog potem bower-assets
 Test Pulla - PO odignorowaniu bower-assets w Vendor
 Zmieniłem hash rejestracji Argon2I na Default w SiteCOntroller.php
+19.08.2018
+Wgranie Kalendarza - 2 wersja rezerwacji wizyty (Work in Progress) - Ajax w PHP
+20.08.2018
+Ajax Zintegrowany z Kalendarzem w Yii2 - nie potrzebny zewnętrzny plik - Kontroler działa
+
+TODO: Logika Biznesowa wyboru stomatologów, limitu wizyt na dzień, CRUD dla Admina, CRUD dla Klienta
