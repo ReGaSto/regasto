@@ -5,7 +5,7 @@ use yii\web\JsExpression;
 use yii\web\JqueryAsset;
 
 /* @var $this yii\web\View */
-$this->title = 'yii2 extension yii2-fullcalendar demo';
+$this->title = 'REZERWACJA';
 
 /*$this->registerJs($DragJS);*/
 ?>
@@ -32,11 +32,12 @@ function(start) {
    eventData = {title: title, start: start};
 
    $('#w0').fullCalendar('renderEvent', eventData, true);
+   
+   $('#w0').fullCalendar('unselect');
    var ajaxStart = start.toJSON();
    var ajaxTitle = eventData.title;
-   $('#w0').fullCalendar('unselect');
    $.ajax({
-       url:"http://localhost/regasto/views/kalendarz/ajaxdb.php",
+       url:"index.php?r=kalendarz%2Fajaxdb",
        type: 'GET',
        data: { ajaxTitle: ajaxTitle, ajaxStart: ajaxStart},
        success: function (json) {
