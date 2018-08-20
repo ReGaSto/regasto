@@ -27,9 +27,7 @@ if (isset($_SESSION['zalogowany'], $_POST['dodaj']) && ($_SESSION['ranga'] === '
             $dresult = mysqli_query($con, $dsql);            
 }
 else
-{
-    echo "nic do dodania";
-}
+{}
 
 if (isset($_SESSION['ranga']) && $_SESSION['ranga'] === '1' )                 
 {
@@ -41,9 +39,9 @@ if (isset($_SESSION['ranga']) && $_SESSION['ranga'] === '1' )
                     <label for="imie">Imię</label>
                     <input class="form-control" type="text" name="imie"/><br />    
                     <label for="login">Login</label>
-                    <input class="form-control" type="text" name="login" required/><br />
+                    <input class="form-control" type="text" name="login" maxlength="80" required/><br />
                     <label for="email">E-mail</label>
-                    <input class="form-control" type="email" name="email" required/><br />
+                    <input class="form-control" type="email" name="email" maxlength="80" required/><br />
                     <label for="pesel">PESEL</label>
                     <input class="form-control" type="text" name="pesel" /><br />
                     </div>
@@ -51,7 +49,7 @@ if (isset($_SESSION['ranga']) && $_SESSION['ranga'] === '1' )
                     <label for="nazwisko">Nazwisko</label>
                     <input class="form-control" type="text" name="nazwisko"/><br />
                     <label for="haslo">Hasło</label>
-                    <input class="form-control" type="password" name="haslo" required/><br />
+                    <input class="form-control" type="password" name="haslo" maxlength="60" required/><br />
                     <label for="tel">Telefon</label>
                     <input class="form-control" type="tel" name="tel" /><br />
                     </div>

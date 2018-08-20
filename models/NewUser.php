@@ -32,7 +32,8 @@ class NewUser extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             [['username', 'email'], 'unique'],    //pola muszą być jednoznaczne M. Kurant
             [['username', 'password', 'email'], 'required'],    //pola wymagane M. Kurant
             [['username', 'email'], 'string', 'max' => 80],
-            [['password', 'authKey', 'accessToken'], 'string', 'max' => 255],
+            [['password'], 'string', 'max' => 60], //ograniczono długość hasła M.Kurant
+            [['authKey', 'accessToken'], 'string', 'max' => 255],
             ['email', 'email'],   //sprawdzanie poprawności adresu email M. Kurant
                 ];
     }
