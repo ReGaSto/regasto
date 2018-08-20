@@ -11,11 +11,11 @@
             $uzyt = $_POST['login'];
             $hasl = $_POST['haslo'];
             $rang = $_POST['ranga'];
-            $sql = "SELECT ranga, password FROM new_user WHERE username=$uzyt";
+            $sql = "SELECT ranga, password FROM new_user WHERE username='$uzyt'";
             $result = mysqli_query($con, $sql);
             $row = mysqli_fetch_row($result);
             
-            if (($rang[0] === $row[0]) && password_verify($hasl, $row[1])){
+            if (($rang[0] === $row[0])&& password_verify($hasl, $row[1])){ 
                    
                 $_SESSION['zalogowany'] = true;
                 $_SESSION['login'] = $uzyt;

@@ -7,10 +7,7 @@
         
 <?php
 $con = mysqli_connect('localhost', 'root', '', 'regasto');
-$sql = "SELECT * FROM new_user";
-            $result = mysqli_query($con, $sql);
 
-$ile = mysqli_num_rows($result); 
 
 if (isset($_SESSION['zalogowany'], $_POST['dodaj']) && ($_SESSION['ranga'] === '1' || $_SESSION['ranga'] === '2' || $_SESSION['ranga'] === '3'))                 
 {
@@ -34,7 +31,7 @@ else
     echo "nic do dodania";
 }
 
-if (isset($_SESSION['ranga']) && ($ile>=1) && $_SESSION['ranga'] === '1' )                 
+if (isset($_SESSION['ranga']) && $_SESSION['ranga'] === '1' )                 
 {
     ?>
             <form action="dodawanie.php" method="POST"> 
@@ -97,8 +94,8 @@ if (isset($_SESSION['ranga']) && ($ile>=1) && $_SESSION['ranga'] === '1' )
                     </label>
                     </div>
                     </div>
-                    <input type="hidden" id="accessToken" name="accessToken" value="<?php echo md5(random_bytes(5)); ?>"> 
-                    <input type="hidden" id="authKey" name="authKey" value="<?php echo password_hash(random_bytes(10),  PASSWORD_DEFAULT); ?>">
+                    <input type="hidden" id="accessToken" name="accessToken" value="<?php echo password_hash(random_bytes(10),  PASSWORD_DEFAULT); ?>"> 
+                    <input type="hidden" id="authKey" name="authKey" value="<?php echo md5(random_bytes(5)); ?>">
                     <div class="col">
                     </br>
                     <input class="btn btn-success btn-lg btn-block" type="submit" name="dodaj" value="Dodaj" />
@@ -107,7 +104,7 @@ if (isset($_SESSION['ranga']) && ($ile>=1) && $_SESSION['ranga'] === '1' )
             </form>
         <?php
         }
-        elseif (isset($_SESSION['ranga']) && $ile>=1 && ($_SESSION['ranga'] === '2' || $_SESSION['ranga'] === '3'))
+        elseif (isset($_SESSION['ranga']) && ($_SESSION['ranga'] === '2' || $_SESSION['ranga'] === '3'))
         {
     ?>
             <form action="dodawanie.php" method="POST"> 

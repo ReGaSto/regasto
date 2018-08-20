@@ -13,7 +13,7 @@
       {
           echo '<a class="nav-item nav-link" href="przegladanie.php">Przeglądanie</a>
                 <a class="nav-item nav-link" href="dodawanie.php">Dodawanie</a>
-                <a class="nav-item nav-link" href="#">Odejmowanie</a>
+                <a class="nav-item nav-link" href="odejmowanie.php">Odejmowanie</a>
                 <a class="nav-item nav-link" href="#">Zmienianie</a>
                 <a class="nav-item nav-link" href="#">Nadawanie</a>
                 <a class="nav-item nav-link" href="#">Generator</a>
