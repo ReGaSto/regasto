@@ -9,7 +9,6 @@ use Yii;
  *
  * @property int $id
  * @property string $title
- * @property string $description
  * @property string $data_rezerwacji
  * @property int $id_stomatologa
  * @property int $id_pacjenta
@@ -33,7 +32,7 @@ class Kalendarz extends \yii\db\ActiveRecord
             [['title', 'data_rezerwacji'], 'required'],
             [['data_rezerwacji'], 'safe'],
             [['id_stomatologa', 'id_pacjenta'], 'integer'],
-            [['title', 'description'], 'string', 'max' => 64],
+            [['title'], 'string', 'max' => 64],
         ];
     }
 
@@ -45,7 +44,6 @@ class Kalendarz extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'title' => 'Title',
-            'description' => 'Description',
             'data_rezerwacji' => 'Data rezerwacji',
             'id_stomatologa' => 'Id Stomatologa',
             'id_pacjenta' => 'Id Pacjenta',

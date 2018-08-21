@@ -24,10 +24,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'title',
-            'description',
             'data_rezerwacji',
             'id_stomatologa',
-            //'id_pacjenta',
+            'id_pacjenta',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
