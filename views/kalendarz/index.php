@@ -25,8 +25,10 @@ $myUsername = \Yii::$app->user->identity->username;
 
 
 $JSCode = <<<EOF
+        
 function(start, end) {
-   var title =  '$myUsername';;
+   var title =  '$myUsername';
+
 
    var eventData;
    eventData = {title: title, start: start};
@@ -54,7 +56,7 @@ $JSEventClick = <<<EOF
 function(calEvent, jsEvent, view) {
 
     $( function() {
-    $( "#dialog" ).dialog();
+    $( "#dialogform" ).dialog();
   } );
 
         
@@ -67,7 +69,7 @@ EOF;
 
 <div style="display: none">
 
-    <div id="dialog" title="Wybierz Stomatologa">
+    <div id="dialogform" title="Wybierz Stomatologa">
   
   <form>
     <fieldset>
@@ -76,12 +78,18 @@ EOF;
           Farek Czarek <input type="radio" name="stomat" value="2">
  
       <!-- Allow form submission with keyboard without duplicating the dialog button -->
-      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+      <input type="submit">
     </fieldset>
   </form>
 </div>
+</div> 
 
-</div>
+    
+<div style="display: none">    
+<div id="dialog-confirm" title="Empty the recycle bin?">
+  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>These items will be permanently deleted and cannot be recovered. Are you sure?</p>
+</div>    
+</div> 
         <?= \yii2fullcalendar\yii2fullcalendar::widget([
                 'header'        => [
 		'left'   => 'today prev,next',

@@ -1,4 +1,5 @@
 <?php
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 
@@ -11,7 +12,7 @@ $this->title = 'ReGaSto';
 
         <p class="lead">Zapraszamy do zapoznania się z ofertą gabinetu stomatologicznego "Ząbek".</p>
 
-        <p><a class="btn btn-lg btn-success" href="/site/rezerwacja">Zarezerwuj wizytę</a></p>
+        <p><a class="btn btn-lg btn-success" href="<?php echo Url::toRoute('wizyty/index'); ?>">Zarezerwuj wizytę</a></p>
     </div>
 
     <div class="body-content">

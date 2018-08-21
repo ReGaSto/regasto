@@ -4,6 +4,7 @@
 /* @var $content string */
 
 use app\widgets\Alert;
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -72,7 +73,7 @@ AppAsset::register($this);
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; Gabinet Stomatologiczny "Ząbek" <?= date('Y') ?></p>
-        <p><a class="pull-left" style="padding-left: 10px" href="../views/panel/logpanel.php">Panel pracownika</a></p>
+        <p><a class="pull-left" style="padding-left: 10px" href="<?php echo Url::to('@web/php/panel/logpanel.php') ?>">Panel pracownika</a></p>
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
