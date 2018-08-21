@@ -49,7 +49,7 @@ function(start, end) {
        data: { ajaxTitle: ajaxTitle, ajaxStart: ajaxStart},
        success: function () {
                     alert('Zarezerwowano termin na: ' + terazdata.format());
-                    //window.location.href = windowlocationurl;
+                    window.location.href = windowlocationurl;
                 },
         error: function () {
             alert("Błąd - skontaktuj się z nami w celu rejestracji wizyty");
