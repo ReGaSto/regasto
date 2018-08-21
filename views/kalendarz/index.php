@@ -19,8 +19,8 @@ $this->title = 'REZERWACJA';
     </div>
     <div class="body-content">
 <?php
-
-$myUsername = \Yii::$app->user->identity->username;
+if(Yii::$app->user->isGuest === false){     //M.Kurant dodano warunek bo bez tego wywalało error gdy nie było się zalogowanym (problem z $myusername)
+$myUsername = \Yii::$app->user->identity->username; 
 $ajaxurl = Url::toRoute('kalendarz/ajaxdb');
 $windowlocationurl = Url::toRoute('/kalendarz2');
 
@@ -70,7 +70,7 @@ function(calEvent, jsEvent, view) {
 }
      
 EOF;
-    
+  
     ?>
 
  
@@ -120,6 +120,7 @@ EOF;
             
                'events' => $events,
             ]);
+}    
         ?> 
         
         
