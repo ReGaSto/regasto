@@ -74,7 +74,7 @@ class SiteController extends Controller
     {
         return $this->render('stomatolodzy');
     }
-
+    
     /**
      * Login action.
      *
