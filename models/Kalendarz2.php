@@ -14,7 +14,7 @@ use Yii;
  * @property int $id_stomatologa
  * @property int $id_pacjenta
  */
-class Kalendarz extends \yii\db\ActiveRecord
+class Kalendarz2 extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}

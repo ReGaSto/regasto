@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
-    //<?= $form->field($model, 'data_rezerwacji')->textInput() ?>
+    <?= $form->field($model, 'created_date')->textInput() ?>
 
     <?= $form->field($model, 'id_stomatologa')->textInput() ?>
 

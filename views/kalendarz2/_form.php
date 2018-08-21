@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Kalendarz */
+/* @var $model app\models\Kalendarz2 */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="kalendarz-form">
+<div class="kalendarz2-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
-    //<?= $form->field($model, 'data_rezerwacji')->textInput() ?>
+    <?= $form->field($model, 'data_rezerwacji')->textInput() ?>
 
     <?= $form->field($model, 'id_stomatologa')->textInput() ?>
 

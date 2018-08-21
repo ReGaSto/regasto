@@ -21,13 +21,16 @@ $this->title = 'REZERWACJA';
 <?php
 
 $myUsername = \Yii::$app->user->identity->username;
-
+ $ajaxurl = Url::toRoute('kalendarz/ajaxdb');
+ $windowlocationurl = Url::toRoute('kalendarz2');
 
 
 $JSCode = <<<EOF
         
 function(start, end) {
    var title =  '$myUsername';
+   var ajaxurl = '$ajaxurl';
+   var windowlocationurl = '$windowlocationurl';
 
 
    var eventData;
@@ -40,11 +43,13 @@ function(start, end) {
    var ajaxStart = start.toJSON();
    var ajaxTitle = eventData.title;
    $.ajax({
-       url:"index.php?r=kalendarz%2Fajaxdb",
-       type: 'GET',
+       url: ajaxurl, //index.php?r=kalendarz%2Fajaxdb
+       
+   type: 'GET',
        data: { ajaxTitle: ajaxTitle, ajaxStart: ajaxStart},
-       success: function (json) {
+       success: function () {
                     alert('Zarezerwowano termin na: ' + terazdata.format());
+                    window.location.href = 'windowlocationurl';
                 },
         error: function () {
             alert("Błąd - skontaktuj się z nami w celu rejestracji wizyty");
@@ -63,40 +68,21 @@ function(calEvent, jsEvent, view) {
     // change the border color just for fun
     $(this).css('border-color', 'red');
 }
+     
 EOF;
     
     ?>
 
-<div style="display: none">
-
-    <div id="dialogform" title="Wybierz Stomatologa">
-  
-  <form>
-    <fieldset>
-        <label for="name">Stomatolodzy</label><br>
-          Marek Barek <input type="radio" name="stomat" value="1"><br>
-          Farek Czarek <input type="radio" name="stomat" value="2">
  
-      <!-- Allow form submission with keyboard without duplicating the dialog button -->
-      <input type="submit">
-    </fieldset>
-  </form>
-</div>
-</div> 
-
-    
-<div style="display: none">    
-<div id="dialog-confirm" title="Empty the recycle bin?">
-  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>These items will be permanently deleted and cannot be recovered. Are you sure?</p>
-</div>    
-</div> 
         <?= \yii2fullcalendar\yii2fullcalendar::widget([
                 'header'        => [
 		'left'   => 'today prev,next',
 		'center' => 'title',
 		'right'  => '',
 	],
+
               'clientOptions' => [
+                    'lang' => 'pl',
                     'selectable' => true,
                     'selectHelper' => true,
                     

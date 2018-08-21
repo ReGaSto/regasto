@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Kalendarz */
+/* @var $model app\models\Kalendarz2 */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Kalendarzs', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Kalendarz2s', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="kalendarz-view">
+<div class="kalendarz2-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

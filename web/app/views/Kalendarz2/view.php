@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             'description',
-            'data_rezerwacji',
+            'created_date',
             'id_stomatologa',
             'id_pacjenta',
         ],

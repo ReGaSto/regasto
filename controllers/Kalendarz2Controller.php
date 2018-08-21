@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Kalendarz;
+use app\models\Kalendarz2;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * KalendarzController implements the CRUD actions for Kalendarz model.
+ * Kalendarz2Controller implements the CRUD actions for Kalendarz2 model.
  */
-class KalendarzController extends Controller
+class Kalendarz2Controller extends Controller
 {
     /**
      * {@inheritdoc}
@@ -26,49 +26,26 @@ class KalendarzController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
-                    'access' => [
-                        'class' => \yii\filters\AccessControl::className(),
-                        'only' => ['index','create','update','view'],
-                        'rules' => [
-                            // allow authenticated users
-                            [
-                                'allow' => true,
-                                'roles' => ['@'],
-                            ],
-                            // everything else is denied
-                        ],
-                    ],            
         ];
     }
-    
 
     /**
-     * Lists all Kalendarz models.
+     * Lists all Kalendarz2 models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $events = Kalendarz::find()->all();
-        
-        $tasks = [];
-        foreach ($events as $eve)
-        {
-            $event = new \yii2fullcalendar\models\Event();
-            $event->id = $eve->id;
-            $event->title = $eve->title;
-            $event->start = $eve->data_rezerwacji;           
-            $event->className = 'regasto-cal';
-            $event->allDay = false;
-            $tasks[] = $event;
-        }
+        $dataProvider = new ActiveDataProvider([
+            'query' => Kalendarz2::find(),
+        ]);
 
         return $this->render('index', [
-            'events' => $tasks,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single Kalendarz model.
+     * Displays a single Kalendarz2 model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -81,41 +58,25 @@ class KalendarzController extends Controller
     }
 
     /**
-     * Creates a new Kalendarz model.
+     * Creates a new Kalendarz2 model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($date)
+    public function actionCreate()
     {
-        $model = new Kalendarz();
-        $model->data_rezerwacji = $date;
+        $model = new Kalendarz2();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-             return $this->renderAjax('create', [
-            'model' => $model,     
+        }
+
+        return $this->render('create', [
+            'model' => $model,
         ]);
-       }
     }
-    
-    public function actionAjaxdb()
-{
-    $model= new Kalendarz; 
-    if (Yii::$app->request->isAjax) {
-        $data = Yii::$app->request->get();
-        $title_array = explode(":", $data['ajaxTitle']);
-        $data_array = explode(": ", $data['ajaxStart']);        
-        $model->title=$title_array[0];
-        $model->data_rezerwacji=$data_array[0];
-        $model->load($_GET);
-        $model->save();
-    }
-    
-}
 
     /**
-     * Updates an existing Kalendarz model.
+     * Updates an existing Kalendarz2 model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -135,7 +96,7 @@ class KalendarzController extends Controller
     }
 
     /**
-     * Deletes an existing Kalendarz model.
+     * Deletes an existing Kalendarz2 model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -149,15 +110,15 @@ class KalendarzController extends Controller
     }
 
     /**
-     * Finds the Kalendarz model based on its primary key value.
+     * Finds the Kalendarz2 model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Kalendarz the loaded model
+     * @return Kalendarz2 the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Kalendarz::findOne($id)) !== null) {
+        if (($model = Kalendarz2::findOne($id)) !== null) {
             return $model;
         }
 
