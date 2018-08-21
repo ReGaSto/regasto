@@ -110,7 +110,7 @@ class KalendarzController extends Controller
         $model->data_rezerwacji=$data_array[0];
         $model->load($_GET);
         $model->save();
-    }
+    } 
     
 }
 
