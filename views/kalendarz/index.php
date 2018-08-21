@@ -21,8 +21,8 @@ $this->title = 'REZERWACJA';
 <?php
 
 $myUsername = \Yii::$app->user->identity->username;
- $ajaxurl = Url::toRoute('kalendarz/ajaxdb');
- $windowlocationurl = Url::toRoute('kalendarz2');
+$ajaxurl = Url::toRoute('kalendarz/ajaxdb');
+$windowlocationurl = Url::toRoute('/kalendarz2');
 
 
 $JSCode = <<<EOF
@@ -49,7 +49,7 @@ function(start, end) {
        data: { ajaxTitle: ajaxTitle, ajaxStart: ajaxStart},
        success: function () {
                     alert('Zarezerwowano termin na: ' + terazdata.format());
-                    window.location.href = 'windowlocationurl';
+                    //window.location.href = windowlocationurl;
                 },
         error: function () {
             alert("Błąd - skontaktuj się z nami w celu rejestracji wizyty");
