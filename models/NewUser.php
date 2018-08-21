@@ -15,6 +15,10 @@ use Yii;
 
 class NewUser extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
+    
+    const ROLE_USER = 10;                   //role
+    const ROLE_MODERATOR = 20;
+    const ROLE_ADMIN = 30;
     /**
      * {@inheritdoc}
      */
@@ -35,9 +39,19 @@ class NewUser extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             [['password'], 'string', 'max' => 60], //ograniczono długość hasła M.Kurant
             [['authKey', 'accessToken'], 'string', 'max' => 255],
             ['email', 'email'],   //sprawdzanie poprawności adresu email M. Kurant
-                ];
+            [['role'], 'string'],
+            ];
     }
     
+    
+        public function getRole() //M.Kurant
+    {     
+        return $this->role;
+    }
+       public function validateRole($role)   //M.Kurant
+    {
+        return $this->role === $role;
+    }
     /**
      * {@inheritdoc}
      */
