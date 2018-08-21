@@ -151,6 +151,14 @@ class SiteController extends Controller
                 $model->password = password_hash($_POST['NewUser']['password'], PASSWORD_DEFAULT);
                 $model->authKey = md5(random_bytes(5));
                 $model->accessToken = password_hash(random_bytes(10),  PASSWORD_DEFAULT);
+                
+                // Tu dodano nadawanie rangi autor (szaraczek) przy rejestracji
+        /*$auth = \Yii::$app->authManager;
+        $authorRole = $auth->getRole('author');
+        $auth->assign($authorRole, $model->getId());
+            $user = $model;  //próba 
+            return $user;*/
+                
                 if($model->save())
                 {
                     return $this->redirect(['login']);

@@ -15,6 +15,10 @@ $config = [
     'language' => 'pl',
     'sourceLanguage' => 'pl',
     'components' => [
+         'authManager' => [      // Dodano  RBAC M.Kurant
+            'class' => 'yii\rbac\PhpManager',
+             'class' => 'yii\rbac\DbManager',
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '3Yub1SwlGo72b8cj7EuK99DJNi1M-Gaz',
