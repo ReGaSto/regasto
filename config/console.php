@@ -13,6 +13,10 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+         'authManager' => [         //Dodano RBAC M.Kurant
+            'class' => 'yii\rbac\PhpManager',
+             'class' => 'yii\rbac\DbManager',
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
