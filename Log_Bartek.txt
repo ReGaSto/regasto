@@ -11,3 +11,9 @@ Dodałem podstawowy access control w wizyty i kalendarz
 Drobne zmiany komunikatów.
 
 TODO: Logika Biznesowa wyboru stomatologów, CRUD dla Admina, CRUD dla Klienta
+21:08:2018
+Skrypt generacji dat, poprawki
+
+22:08:2018
+Dodałem generator terminów wolnych i dni wolnych do Panelu Administratora Backend
+Zmieniłem logikę Kalendarza po wyborcze daty przekierowuje na update - gdzie można wybrać stomatologa i potwierdzić lub usunąć (anulować wizytę)
