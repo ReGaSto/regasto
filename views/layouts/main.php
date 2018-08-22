@@ -10,6 +10,9 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\filters\AccessControl; //M.Kurant
+use app\models\AccessRule;  //M.Kurant
+use app\models\NewUser;  //M.Kurant
 
 AppAsset::register($this);
 ?>
@@ -45,7 +48,15 @@ AppAsset::register($this);
     ['label' => 'Oferta', 'url' => ['/site/oferta']],
     ['label' => 'Stomatolodzy', 'url' => ['/site/stomatolodzy']],
     ['label' => 'Kontakt', 'url' => ['/site/contact']],
+    
     ];
+    if(isset(Yii::$app->user->identity->role) && Yii::$app->user->identity->role === 30)
+    {
+        array_push($navItem, ['label' => 'Admin', 'url' => ['/kalendarz-admin/index']]);   //dodano KalendarzAdmin
+    } else {
+         
+    }
+    
     
     if(Yii::$app->user->isGuest)
     {
