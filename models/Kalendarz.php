@@ -20,7 +20,7 @@ class Kalendarz extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%kalendarz}}';
+        return '{{%kalendarz2}}';
     }
 
     /**
@@ -29,10 +29,8 @@ class Kalendarz extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'data_rezerwacji'], 'required'],
-            [['data_rezerwacji'], 'safe'],
+            [['data', 'godzina'], 'required'],           
             [['id_stomatologa', 'id_pacjenta'], 'integer'],
-            [['title'], 'string', 'max' => 64],
         ];
     }
 
@@ -42,9 +40,8 @@ class Kalendarz extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'title' => 'Title',
-            'data_rezerwacji' => 'Data rezerwacji',
+            'data' => 'Data',
+            'godzina' => 'Godzina',
             'id_stomatologa' => 'Id Stomatologa',
             'id_pacjenta' => 'Id Pacjenta',
         ];

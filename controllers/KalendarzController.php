@@ -20,31 +20,27 @@ class KalendarzController extends Controller
     /**
      * {@inheritdoc}
      */
-    public function behaviors() {
+public function behaviors()
+    {
         return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['*'],
-                'rules' => [
-                    [
-                        'actions' => ['index', ],
-                        'allow' => true,
-                        'roles' => [
-                //NewUser::ROLE_USER,
-                //NewUser::ROLE_MODERATOR,
-                //NewUser::ROLE_ADMIN,
-                            '@'
-                            //(Yii::$user->identity->role === 30),
-            ],
-                    ],
-                ],
-            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    'delete' => ['POST'],
                 ],
             ],
+                    'access' => [
+                        'class' => \yii\filters\AccessControl::className(),
+                        'only' => ['index','create','update','view'],
+                        'rules' => [
+                            // allow authenticated users
+                            [
+                                'allow' => true,
+                                'roles' => ['@'],
+                            ],
+                            // everything else is denied
+                        ],
+                    ],            
         ];
     }
 
@@ -59,10 +55,13 @@ class KalendarzController extends Controller
         $tasks = [];
         foreach ($events as $eve)
         {
+            
             $event = new \yii2fullcalendar\models\Event();
-            $event->id = $eve->id;
-            $event->title = $eve->title;
-            $event->start = $eve->data_rezerwacji;           
+            $data_wizyty = $eve->data;
+            $godzina_wizyty = $eve->godzina;
+            /*$event->id = $eve->id;*/
+            $event->title = $eve->id_pacjenta;
+            $event->start = $data_wizyty." ".$godzina_wizyty;           
             $event->className = 'regasto-cal';
             $event->allDay = false;
             $tasks[] = $event;
@@ -109,15 +108,17 @@ class KalendarzController extends Controller
 {
     $model= new Kalendarz; 
     if (Yii::$app->request->isAjax) {
-        $data = Yii::$app->request->get();
-        $title_array = explode(":", $data['ajaxTitle']);
-        $data_array = explode(": ", $data['ajaxStart']);        
-        $model->title=$title_array[0];
-        $model->data_rezerwacji=$data_array[0];
+        $data = Yii::$app->request->get();         
+        $model->id_pacjenta=5;
+        $model->data='2018:08:23';
+        $model->godzina='11:30:00';
+        $model->id_stomatologa = 1;
         $model->load($_GET);
         $model->save();
+        
+       
     } 
-    
+     return $this->redirect(['update', 'id' => $model->id]);
 }
 
     /**

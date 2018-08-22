@@ -20,7 +20,7 @@ $this->title = 'REZERWACJA';
     <div class="body-content">
 <?php
 if(Yii::$app->user->isGuest === false){     //M.Kurant dodano warunek bo bez tego wywalało error gdy nie było się zalogowanym (problem z $myusername)
-$myUsername = \Yii::$app->user->identity->username; 
+$myUsername = \Yii::$app->user->identity->id; 
 $ajaxurl = Url::toRoute('kalendarz/ajaxdb');
 $windowlocationurl = Url::toRoute('/kalendarz2');
 
@@ -43,16 +43,15 @@ function(start, end) {
    var ajaxStart = start.toJSON();
    var ajaxTitle = eventData.title;
    $.ajax({
-       url: ajaxurl, //index.php?r=kalendarz%2Fajaxdb
-       
+       url: ajaxurl, //index.php?r=kalendarz%2Fajaxdb       
    type: 'GET',
        data: { ajaxTitle: ajaxTitle, ajaxStart: ajaxStart},
        success: function () {
-                    alert('Zarezerwowano termin na: ' + terazdata.format());
-                    window.location.href = windowlocationurl;
+                    //alert('Zarezerwowano termin na: ' + terazdata.format());
+                    //window.location.href = windowlocationurl;
                 },
         error: function () {
-            alert("Błąd - skontaktuj się z nami w celu rejestracji wizyty");
+            alert("Poczekaj na potwierdzenie wizyty");
         }
     }); 
 }
