@@ -20,7 +20,9 @@
                 <a class="nav-item nav-link" href="odejmowanie.php">Odejmowanie</a>
                 <a class="nav-item nav-link" href="#">Zmienianie</a>
                 <a class="nav-item nav-link" href="#">Nadawanie</a>
-                <a class="nav-item nav-link" href="#">Generator</a>
+                <!--<a class="nav-item nav-link" href="#">Generator</a>-->
+                <a class="nav-item nav-link" href="PDO_Terminy.php"><strong>Wolne<br>Terminy</strong></a>
+                <a class="nav-item nav-link" href="PDO_Wolne.php"><strong>Dni<br>Wolne</strong></a>
                 <a class="nav-item nav-link" href="wylogowano.php">Wyloguj</a>';
       }
       else {

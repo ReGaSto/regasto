@@ -1,21 +1,24 @@
 <?php
-Echo 'Generacja Terminów do Wizyt<br>';
+require_once '../../../config/param_db.php';
+Echo 'Generacja Terminów do Wizyt<br><br>';
 // Skrypt wylicza daty z godzinami co 30 minut = 1800 sekund + usuwa z tablicy godziny nierobocze
     
 // DEKLARACJA Zmiennych
     $date;
     $time;
+    $data_poczatkowa = "2018-08-22 16:00"; // tutaj można ustawić zmienną (z datepickera)
+    $data_koncowa = "2018-11-30 20:00";  // tutaj można ustawić zmienną (z datepickera)
     /* Dane bazy danych*/
 
-    define('DB_SERVER', 'localhost'); // TUTAJ dodałbym zmienne które byłyby zintegrowane z plikiem db.php z Yii2 dzięki temu zmiana BD tam zgra się z tym
+    define('DB_SERVER', $adres_serwera); // TUTAJ dodałbym zmienne które byłyby zintegrowane z plikiem db.php z Yii2 dzięki temu zmiana BD tam zgra się z tym
 
-    define('DB_USERNAME', 'root');
+    define('DB_USERNAME', $nazwa_uzytkownika);
 
-    define('DB_PASSWORD', '');
+    define('DB_PASSWORD', $haslo);
 
-    define('DB_NAME', 'regasto');
+    define('DB_NAME', $nazwa_bazy);
     
-    //define ('DB_CHARSET', 'utf8'); - zrezygnowałem chwilowo
+    //define ('DB_CHARSET', $kodowanie); - zrezygnowałem chwilowo
     
     try{
 
@@ -30,7 +33,7 @@ Echo 'Generacja Terminów do Wizyt<br>';
 
 } catch(PDOException $e){
 
-    die("Błąd: Nie można połączyć z bazą danych. " . $e->getMessage());
+    die("<b>Błąd: Nie można połączyć z bazą danych.</b> " . $e->getMessage());
 
 }
     
@@ -40,8 +43,7 @@ Echo 'Generacja Terminów do Wizyt<br>';
     $odstep_czasowy = 1800; // W sekundach
     $godziny_wylaczone = array('21', '22', '23', '00', '01', '02', '03', '04', '05', '06', '07');
     $dni_tygodnia_wylaczone = array('0', '6'); // 0 - niedziela, 6 - sobota
-    $data_poczatkowa = "2018-08-22 16:00"; // tutaj można ustawić zmienną (z datepickera)
-    $data_koncowa = "2018-11-30 20:00";  // tutaj można ustawić zmienną (z datepickera)
+
     $czas_poczatkowy = strtotime($data_poczatkowa);
     $czas_koncowy = strtotime($data_koncowa);
 
@@ -66,7 +68,7 @@ Echo 'Generacja Terminów do Wizyt<br>';
                          
         );} catch (Exception $e) {
            
-    echo '<br>BŁĄD! Prawdopodobnie zdublowane wpisy sprawdź dokładnie wykasuj lub podaj prawidłowe ramy czasowe: ',  $e->getMessage(), "\n";
+    echo '<br><br><b>BŁĄD! Prawdopodobnie zdublowane wpisy sprawdź dokładnie wykasuj lub podaj prawidłowe ramy czasowe:</b><br><br>Komunikat błędu: ',  $e->getMessage(), "\n";
      exit;
 }
     }
@@ -77,7 +79,3 @@ Echo 'Generacja Terminów do Wizyt<br>';
     //$dresult = mysqli_query($con, $dsql);
     
     ?>
-    
-   
-    echo inverse(5) . "\n";
-    echo inverse(0) . "\n";

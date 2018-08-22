@@ -23,6 +23,23 @@ Echo 'Generacja Terminów do Wizyt<br><br>';
     
     //define ('DB_CHARSET', $kodowanie); - chwilowo wyłączone
     
+    try{
+
+    $connect = new PDO("mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME /*. ";charset=" . DB_CHARSET*/, DB_USERNAME, DB_PASSWORD);
+
+    // Wyłapywanie błędu połączenia w bloku try-catch
+
+
+    $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    echo 'Nawiązano połączenie z bazą!';
+
+} catch(PDOException $e){
+
+    die("<b>Błąd: Nie można połączyć z bazą danych.</b> " . $e->getMessage());
+
+}
+    
    /* // W dalszej części po dołączeniu tego pliku w nagłówku php require_once 'PDO_bd.php' należy użyć kodu poniżej!
     * 
     * // Wskazówka: Aby łatwo usunąć gwiazdki w Netbeans i nie tylko należy uruchomić edycję wielowierszową
