@@ -22,49 +22,30 @@ class KalendarzController extends Controller
      */
     public function behaviors() {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['*'],
+                'rules' => [
+                    [
+                        'actions' => ['index', ],
+                        'allow' => true,
+                        'roles' => [
+                //NewUser::ROLE_USER,
+                //NewUser::ROLE_MODERATOR,
+                //NewUser::ROLE_ADMIN,
+                            '@'
+                            //(Yii::$user->identity->role === 30),
+            ],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'logout' => ['post'],
                 ],
             ],
-            'access' => [// role M.Kurant
-                'class' => AccessControl::className(),
-                // We will override the default rule config with the new AccessRule class
-                'ruleConfig' => [
-                    'class' => AccessRule::className(),
-                ],
-                'only' => ['Create', 'Update', 'View'],
-                'rules' => [
-                    [
-                        'actions' => ['Create'],
-                        'allow' => true,
-                        // Allow users, moderators and admins to create
-                        'roles' => [
-                            NewUser::ROLE_USER,
-                            NewUser::ROLE_MODERATOR,
-                            NewUser::ROLE_ADMIN
-                        ],
-                    ],
-                    [
-                        'actions' => ['Update'],
-                        'allow' => true,
-                        // Allow moderators and admins to update
-                        'roles' => [
-                            NewUser::ROLE_MODERATOR,
-                            NewUser::ROLE_ADMIN
-                        ],
-                    ],
-                    [
-                        'actions' => ['View'],
-                        'allow' => true,
-                        // Allow admins to delete
-                        'roles' => [
-                            NewUser::ROLE_ADMIN
-                        ],
-                    ],
-                ],
-        ]];
+        ];
     }
 
     /**

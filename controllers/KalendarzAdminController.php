@@ -8,7 +8,9 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\filters\AccessControl; //M.Kurant
+use app\models\AccessRule;  //M.Kurant
+use app\models\NewUser;  //M.Kurant
 /**
  * KalendarzAdminController implements the CRUD actions for KalendarzAdmin model.
  */
@@ -17,13 +19,24 @@ class KalendarzAdminController extends Controller
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
+public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['logout'],
+                'rules' => [
+                    [
+                        'actions' => ['logout'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'logout' => ['post'],
                 ],
             ],
         ];

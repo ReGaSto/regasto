@@ -1,6 +1,7 @@
 <?php
 
 namespace app\controllers;
+//namespace app\models;
 //Dodano use Yii ... M. Kurant//
 use Yii;
 use yii\filters\AccessControl;
@@ -10,6 +11,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\NewUser;
+use app\models\AccessRule;
 
 class SiteController extends Controller
 {
