@@ -20,8 +20,7 @@ class KalendarzController extends Controller
     /**
      * {@inheritdoc}
      */
-    public function behaviors() 
-    {
+    public function behaviors() {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -29,45 +28,44 @@ class KalendarzController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
-                    'access' => [               // role M.Kurant
-    'class' => AccessControl::className(),
-    // We will override the default rule config with the new AccessRule class
-    'ruleConfig' => [
-        'class' => AccessRule::className(),
-    ],
-    'only' => ['Create', 'Update', 'View'],
-    'rules' => [
-        [
-            'actions' => ['Create'],
-            'allow' => true,
-            // Allow users, moderators and admins to create
-            'roles' => [
-                NewUser::ROLE_USER,
-                NewUser::ROLE_MODERATOR,
-                NewUser::ROLE_ADMIN
-            ],
-        ],
-        [
-            'actions' => ['Update'],
-            'allow' => true,
-            // Allow moderators and admins to update
-            'roles' => [
-                NewUser::ROLE_MODERATOR,
-                NewUser::ROLE_ADMIN
-            ],
-        ],
-        [
-            'actions' => ['View'],
-            'allow' => true,
-            // Allow admins to delete
-            'roles' => [
-                NewUser::ROLE_ADMIN
-            ],
-        ],
-    ],            
+            'access' => [// role M.Kurant
+                'class' => AccessControl::className(),
+                // We will override the default rule config with the new AccessRule class
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                'only' => ['Create', 'Update', 'View'],
+                'rules' => [
+                    [
+                        'actions' => ['Create'],
+                        'allow' => true,
+                        // Allow users, moderators and admins to create
+                        'roles' => [
+                            NewUser::ROLE_USER,
+                            NewUser::ROLE_MODERATOR,
+                            NewUser::ROLE_ADMIN
+                        ],
+                    ],
+                    [
+                        'actions' => ['Update'],
+                        'allow' => true,
+                        // Allow moderators and admins to update
+                        'roles' => [
+                            NewUser::ROLE_MODERATOR,
+                            NewUser::ROLE_ADMIN
+                        ],
+                    ],
+                    [
+                        'actions' => ['View'],
+                        'allow' => true,
+                        // Allow admins to delete
+                        'roles' => [
+                            NewUser::ROLE_ADMIN
+                        ],
+                    ],
+                ],
         ]];
     }
-    
 
     /**
      * Lists all Kalendarz models.
