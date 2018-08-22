@@ -1,10 +1,10 @@
 <?php
-
+Echo 'Generacja Terminów do Wizyt<br>';
 // Skrypt wylicza daty z godzinami co 30 minut = 1800 sekund + usuwa z tablicy godziny nierobocze
     
 // DEKLARACJA Zmiennych
-    global $date;
-    global $time;
+    $date;
+    $time;
     /* Dane bazy danych*/
 
     define('DB_SERVER', 'localhost');
@@ -51,7 +51,7 @@
         if (!in_array(date('w', $t), $dni_tygodnia_wylaczone) && !in_array(date('H', $t), $godziny_wylaczone)) {
             //$tablica_dat[$i] = date('Y-m-d H:i:s', $t);
             $datetime =  date('Y-m-d H:i:s', $t);
-            $date_arr= explode(" ", $datetime);
+            $date_arr = explode(" ", $datetime);
             $date= $date_arr[0];
             $time= $date_arr[1];
             $query = "INSERT INTO wizyty (id_pacjenta, data, godzina) VALUES ('0', :date, :time);";
@@ -67,6 +67,8 @@
     //return $tablica_dat;
     
     
-    //$dresult = mysqli_query($con, $dsql);  
+    //$dresult = mysqli_query($con, $dsql);
+    
+    ?>
     
     
