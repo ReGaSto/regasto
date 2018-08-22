@@ -35,10 +35,10 @@ class Kalendarz2Controller extends Controller
     'ruleConfig' => [
         'class' => AccessRule::className(),
     ],
-    'only' => ['Create', 'Update', 'View'],
+    'only' => ['create', 'update', 'view'],
     'rules' => [
         [
-            'actions' => ['Create'],
+            'actions' => ['create'],
             'allow' => true,
             // Allow users, moderators and admins to create
             'roles' => [
@@ -48,7 +48,7 @@ class Kalendarz2Controller extends Controller
             ],
         ],
         [
-            'actions' => ['Update'],
+            'actions' => ['update'],
             'allow' => true,
             // Allow moderators and admins to update
             'roles' => [
@@ -57,7 +57,7 @@ class Kalendarz2Controller extends Controller
             ],
         ],
         [
-            'actions' => ['View'],
+            'actions' => ['view'],
             'allow' => true,
             // Allow admins to delete
             'roles' => [
@@ -104,8 +104,8 @@ class Kalendarz2Controller extends Controller
     public function actionCreate()
     {
         $model = new Kalendarz2();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                        // przykład ifa dopuszczającego rangi 30-admin,20-lekarz,15-operator i 10-pacjent
+        if ($model->load(Yii::$app->request->post()) && $model->save() && ((Yii::$user->identity->role === 30) || (Yii::$user->identity->role === 20) || (Yii::$user->identity->role === 10) || (Yii::$user->identity->role === 15))) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
