@@ -7,7 +7,7 @@ Echo 'Generacja Terminów do Wizyt<br>';
     $time;
     /* Dane bazy danych*/
 
-    define('DB_SERVER', 'localhost');
+    define('DB_SERVER', 'localhost'); // TUTAJ dodałbym zmienne które byłyby zintegrowane z plikiem db.php z Yii2 dzięki temu zmiana BD tam zgra się z tym
 
     define('DB_USERNAME', 'root');
 
