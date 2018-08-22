@@ -12,6 +12,7 @@ $this->title = 'REZERWACJA';
 <div class="site-index">
 
     <div class="jumbotron">
+        
         <h1>Rezerwacja wizyt - Regasto</h1>
 
         <p class="lead">Wybierz termin, który cię interesuje</p>

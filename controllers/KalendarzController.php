@@ -105,6 +105,7 @@ public function behaviors()
     }
     
     public function actionAjaxdb()
+            
 {
     $model= new Kalendarz; 
     if (Yii::$app->request->isAjax) {
