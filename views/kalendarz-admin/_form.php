@@ -9,7 +9,9 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="kalendarz-admin-form">
-
+    <?php
+if (Yii::$app->user->identity->role === 30){
+    ?>
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
@@ -26,6 +28,12 @@ use yii\widgets\ActiveForm;
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
 
-    <?php ActiveForm::end(); ?>
-
+    <?php ActiveForm::end(); 
+ 
+}
+else
+{
+    echo 'Nie masz uprawnień do przeglądania tej strony.';
+}
+?>
 </div>

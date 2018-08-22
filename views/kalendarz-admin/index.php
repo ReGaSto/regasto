@@ -12,7 +12,9 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="kalendarz-admin-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+    <?php
+if (Yii::$app->user->identity->role === 30){
+    ?>
     <p>
         <?= Html::a('Create Kalendarz Admin', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
@@ -31,5 +33,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
+    ]); 
+}
+else
+{
+    echo 'Nie masz uprawnień do przeglądania tej strony.';
+}
+?>
 </div>

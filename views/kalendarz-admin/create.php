@@ -13,9 +13,17 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="kalendarz-admin-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+    <?php
+if (Yii::$app->user->identity->role === 30){
+    ?>
     <?= $this->render('_form', [
         'model' => $model,
-    ]) ?>
+    ]); 
+}
+else
+{
+    echo 'Nie masz uprawnień do przeglądania tej strony.';
+}        
+        ?>
 
 </div>
