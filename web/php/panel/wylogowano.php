@@ -14,10 +14,10 @@ elseif (isset($_SESSION['haslo']))
     unset($_SESSION['haslo']);
     echo 'haslo';
 }
-elseif (isset($_SESSION['ranga']))
+elseif (isset($_SESSION['role']))
 {
-    unset($_SESSION['ranga']);
-    echo 'ranga';
+    unset($_SESSION['role']);
+    echo 'role';
 }
 //$_SESSION = array();
 

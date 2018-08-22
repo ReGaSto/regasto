@@ -12,9 +12,9 @@ $sql = "SELECT * FROM new_user";
 
 $ile = mysqli_num_rows($result); 
 
-if (isset($_SESSION['ranga']) && $ile>=1 && $_SESSION['ranga'] === '1')                 
+if (isset($_SESSION['role']) && $ile>=1 && $_SESSION['role'] === '30')                 
 {
-echo '</br><table class="table table-hover table-sm table-bordered"><caption>Lista użytkowników</caption><thead class="thead-light"><tr>';    
+echo '</br><table class="table table-hover table-sm table-bordered"><caption>Lista użytkowników</br>Ranga: 30 - administrator, 20 - lekarz, 15 - operator, 10 - pacjent.</caption><thead class="thead-light"><tr>';    
 echo<<<END
 <th>ID</th>
 <th>Imię</th>
@@ -43,7 +43,7 @@ for ($i = 1; $i <= $ile; $i++)
                         $k8 = $row1['username'];
                         $k9 = md5($row1['password']);
                         $k10 = $row1['notatka'];
-                        $k11 = $row1['ranga'];
+                        $k11 = $row1['role'];
                         
 echo<<<END
         <td>$k1</td>
@@ -64,7 +64,7 @@ END;
 echo '</tr></table></div>';
          
         }
-        elseif (isset($_SESSION['ranga']) && $ile>=1 && $_SESSION['ranga'] === '2')
+        elseif (isset($_SESSION['role']) && $ile>=1 && $_SESSION['role'] === '20')
         {
 echo '</br><table class="table table-hover table-sm table-bordered"><caption>Lista użytkowników</caption><thead class="thead-light"><tr>';    
 echo<<<END
@@ -104,7 +104,7 @@ END;
 echo '</tr></table></div>';
          
         }
-        elseif (isset($_SESSION['ranga']) && $ile>=1 && $_SESSION['ranga'] === '3')
+        elseif (isset($_SESSION['role']) && $ile>=1 && $_SESSION['role'] === '15')
         {
 echo '</br><table class="table table-hover table-sm table-bordered"><caption>Lista użytkowników</caption><thead class="thead-light"><tr>';    
 echo<<<END
