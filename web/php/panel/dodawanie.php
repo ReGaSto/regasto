@@ -6,30 +6,37 @@
         <h1>Dodawanie użytkowników</h1>
         
 <?php
+//M.K dodano indeks UNIQUE email, pesel i usernamew tabeli new_user i zmieniono rangi 30,20,15,10 domyślna 10
 $con = mysqli_connect('localhost', 'root', '', 'regasto');
 
+if (isset($_SESSION['role'], $_POST['dodaj'], $_POST['login']) && ($_SESSION['role'] === '30' || $_SESSION['role'] === '20' || $_SESSION['role'] === '15'))                 
+{       $duzyt = $_POST['login'];
+        echo  'Dodano użytkownika <b>'.$duzyt.'</b>!';
+}
+else {}
 
-if (isset($_SESSION['zalogowany'], $_POST['dodaj']) && ($_SESSION['ranga'] === '1' || $_SESSION['ranga'] === '2' || $_SESSION['ranga'] === '3'))                 
+if (isset($_SESSION['zalogowany'], $_POST['dodaj']) && ($_SESSION['role'] === '30' || $_SESSION['role'] === '20' || $_SESSION['role'] === '15'))                 
 {
             $duzyt = $_POST['login'];
             $dem = $_POST['email'];
             $dhasl = password_hash($_POST['haslo'], PASSWORD_DEFAULT);
             $dakey = $_POST['authKey'];
             $datok = $_POST['accessToken'];
-            $drang = $_POST['ranga'];
+            $drang = $_POST['role'];
             $dmie = $_POST['mieszka'];
             $dtel = $_POST['tel'];
             $dim = $_POST['imie'];
             $dnaz = $_POST['nazwisko'];
             $dnot = $_POST['notatka'];
             $dpes = $_POST['pesel'];
-            $dsql = "INSERT INTO new_user (username, email, password, authKey, accessToken, ranga, mieszka, tel, imie, nazwisko, notatka, pesel) VALUES ( '$duzyt', '$dem', '$dhasl', '$dakey', '$datok', '$drang', '$dmie', '$dtel', '$dim', '$dnaz', '$dnot', '$dpes')";
+                      
+            $dsql = "INSERT INTO new_user (username, email, password, authKey, accessToken, role, mieszka, tel, imie, nazwisko, notatka, pesel) VALUES ( '$duzyt', '$dem', '$dhasl', '$dakey', '$datok', '$drang', '$dmie', '$dtel', '$dim', '$dnaz', '$dnot', '$dpes')";
             $dresult = mysqli_query($con, $dsql);            
-}
+            }
 else
 {}
 
-if (isset($_SESSION['ranga']) && $_SESSION['ranga'] === '1' )                 
+if (isset($_SESSION['role']) && $_SESSION['role'] === '30' )                 
 {
     ?>
             <form action="dodawanie.php" method="POST"> 
@@ -68,25 +75,25 @@ if (isset($_SESSION['ranga']) && $_SESSION['ranga'] === '1' )
                     <label>Ranga:</label>
                     </div>
                     <div class="form-check">
-                    <input id="r1" class="form-check-input" type="radio" name="ranga" value="1" required>
+                    <input id="r1" class="form-check-input" type="radio" name="role" value="30" required>
                     <label class="form-check-label" for="r1">
                         Administrator
                     </label>
                     </div>
                     <div class="form-check">
-                    <input id="r2" class="form-check-input" type="radio" name="ranga" value="2" required>
+                    <input id="r2" class="form-check-input" type="radio" name="role" value="20" required>
                     <label class="form-check-label" for="r2">
                         Lekarz
                     </label>
                     </div>
                     <div class="form-check">
-                    <input id="r3" class="form-check-input" type="radio" name="ranga" value="3" required>
+                    <input id="r3" class="form-check-input" type="radio" name="role" value="15" required>
                     <label class="form-check-label" for="r3">
                         Operator
                     </label>
                     </div>
                     <div class="form-check">
-                    <input id="r4" class="form-check-input" type="radio" name="ranga" value="0" checked required>
+                    <input id="r4" class="form-check-input" type="radio" name="role" value="10" checked required>
                     <label class="form-check-label" for="r4">
                         Pacjent
                     </label>
@@ -102,7 +109,7 @@ if (isset($_SESSION['ranga']) && $_SESSION['ranga'] === '1' )
             </form>
         <?php
         }
-        elseif (isset($_SESSION['ranga']) && ($_SESSION['ranga'] === '2' || $_SESSION['ranga'] === '3'))
+        elseif (isset($_SESSION['role']) && ($_SESSION['role'] === '20' || $_SESSION['role'] === '15'))
         {
     ?>
             <form action="dodawanie.php" method="POST"> 
@@ -141,7 +148,7 @@ if (isset($_SESSION['ranga']) && $_SESSION['ranga'] === '1' )
                     <label>Ranga:</label>
                     </div>
                     <div class="form-check">
-                    <input id="r4" class="form-check-input" type="radio" name="ranga" value="0" checked required>
+                    <input id="r4" class="form-check-input" type="radio" name="role" value="10" checked required>
                     <label class="form-check-label" for="r4">
                         Pacjent
                     </label>

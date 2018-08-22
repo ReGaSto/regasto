@@ -8,7 +8,7 @@
 <?php
 $con = mysqli_connect('localhost', 'root', '', 'regasto');
 
-if (isset($_SESSION['zalogowany'], $_POST['usun']) && ($_SESSION['ranga'] === '1'))                 
+if (isset($_SESSION['zalogowany'], $_POST['usun']) && ($_SESSION['role'] === '30'))                 
 {
             $uem = $_POST['email'];
             $unaz = $_POST['nazwisko'];
@@ -19,7 +19,7 @@ if (isset($_SESSION['zalogowany'], $_POST['usun']) && ($_SESSION['ranga'] === '1
 else
 {}
 
-if (isset($_SESSION['zalogowany'], $_POST['wsql'], $_POST['wykonaj']) && ($_SESSION['ranga'] === '1'))
+if (isset($_SESSION['zalogowany'], $_POST['wsql'], $_POST['wykonaj']) && ($_SESSION['role'] === '30'))
 {
             $wsql = $_POST['wsql'];
             $wresult = mysqli_query($con, $wsql);  
@@ -28,7 +28,7 @@ if (isset($_SESSION['zalogowany'], $_POST['wsql'], $_POST['wykonaj']) && ($_SESS
 else
 {}
 
-if (isset($_SESSION['zalogowany']) && ($_SESSION['ranga'] === '1'))
+if (isset($_SESSION['zalogowany']) && ($_SESSION['role'] === '30'))
 {
 ?>    
         <div class="form-group border">
@@ -56,7 +56,7 @@ if (isset($_SESSION['zalogowany']) && ($_SESSION['ranga'] === '1'))
         </div>
             </form>
           <?php     
-if (isset($_SESSION['ranga'], $_POST['etab']) && $_SESSION['ranga'] === '1' )                 
+if (isset($_SESSION['role'], $_POST['etab']) && $_SESSION['role'] === '30' )                 
 {
     $etab = $_POST['etab'];
     $esql = "DESCRIBE $etab";
@@ -77,7 +77,7 @@ if (isset($_SESSION['ranga'], $_POST['etab']) && $_SESSION['ranga'] === '1' )
 }  
 }
 
-if (isset($_SESSION['ranga']) && $_SESSION['ranga'] === '1' )                 
+if (isset($_SESSION['role']) && $_SESSION['role'] === '30' )                 
 {
     ?>      
             </br>
