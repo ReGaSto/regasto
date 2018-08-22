@@ -105,14 +105,15 @@ public function behaviors()
     }
     
     public function actionAjaxdb()
-            
 {
     $model= new Kalendarz; 
     if (Yii::$app->request->isAjax) {
-        $data = Yii::$app->request->get();         
-        $model->id_pacjenta=5;
-        $model->data='2018:08:23';
-        $model->godzina='11:30:00';
+        $data = Yii::$app->request->get();
+        $title_array = explode(": ", $data['ajaxTitle']);
+        $data_array = explode(": ", $data['ajaxStart']);
+        $model->id_pacjenta=$title_array[0];
+        $model->data = $data_array[0];
+        $model->godzina= $data_array[0];
         $model->id_stomatologa = 1;
         $model->load($_GET);
         $model->save();
