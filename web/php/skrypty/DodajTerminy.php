@@ -56,12 +56,19 @@ Echo 'Generacja Terminów do Wizyt<br>';
             $time= $date_arr[1];
             $query = "INSERT INTO wizyty (id_pacjenta, data, godzina) VALUES ('0', :date, :time);";
             $statement = $connect->prepare($query);
-            $statement->execute(
+            
+             try {
+                 $statement->execute(
                 array(
                     ':date' => $date,
                     ':time' => $time,
                 )
-        );
+                         
+        );} catch (Exception $e) {
+           
+    echo '<br>BŁĄD! Prawdopodobnie zdublowane wpisy sprawdź dokładnie wykasuj lub podaj prawidłowe ramy czasowe: ',  $e->getMessage(), "\n";
+     exit;
+}
     }
     }
     //return $tablica_dat;
@@ -71,4 +78,6 @@ Echo 'Generacja Terminów do Wizyt<br>';
     
     ?>
     
-    
+   
+    echo inverse(5) . "\n";
+    echo inverse(0) . "\n";
