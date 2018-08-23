@@ -128,7 +128,7 @@ class WizytyController extends Controller
         $model->update();
         
         $searchModel = new WizytySearch();
-        $dataProvider = $searchModel->searchVacant(Yii::$app->request->get());
+        $dataProvider = $searchModel->searchVacant(Yii::$app->request->post());
         
         return $this->render('update', [
             'dataProvider' => $dataProvider,
@@ -180,7 +180,7 @@ class WizytyController extends Controller
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
     
-    public function actionWolneTerminy() {
+/*     public function actionWolneTerminy() { */
     /*
      * 
      * Kontroler wylicza daty z godzinami co 30 minut = 1800 sekund
@@ -188,24 +188,24 @@ class WizytyController extends Controller
      * 
      */
 // DEKLARACJA Zmiennych
-    $tablica_dat = array();
+    /* $tablica_dat = array(); */
 
 // SETUP
-    $odstep_czasowy = 1800; // W sekundach
+/*     $odstep_czasowy = 1800; // W sekundach
     $godziny_wylaczone = array('21', '22', '23', '00', '01', '02', '03', '04', '05', '06', '07');
     $dni_tygodnia_wylaczone = array('0', '6'); // 0 - niedziela, 6 - sobota
     $data_poczatkowa = "2018-08-22 07:00"; // tutaj można ustawić zmienną (z datepickera)
     $data_koncowa = "2018-08-31 11:30";  // tutaj można ustawić zmienną (z datepickera)
     $czas_poczatkowy = strtotime($data_poczatkowa);
-    $czas_koncowy = strtotime($data_koncowa);
+    $czas_koncowy = strtotime($data_koncowa); */
 
 //LOGIKA
-    for ($i = 0, $t = $czas_poczatkowy; $t < $czas_koncowy; $t += $odstep_czasowy, $i++) {
+   /*  for ($i = 0, $t = $czas_poczatkowy; $t < $czas_koncowy; $t += $odstep_czasowy, $i++) {
 
         if (!in_array(date('w', $t), $dni_tygodnia_wylaczone) && !in_array(date('H', $t), $godziny_wylaczone)) {
             $tablica_dat[$i] = date('Y-m-d H:i:s', $t);
         }
     }
-    return $tablica_dat;
-}
+    return $tablica_dat; */
+/* } */
 }

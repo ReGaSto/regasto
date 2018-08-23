@@ -4,12 +4,13 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
-use kartik\time\TimePicker;
-use app\models\Stomatolodzy;
+
+use app\models\Wizyty;
 use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Wizyty */
+/* @var $form yii\widgets\ActiveForm */
 
 $this->title = Yii::t('app', 'Zmieniasz wizytę na...');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Wizyty zarezerwowane'), 'url' => ['index']];
@@ -20,14 +21,14 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Zmiana wizyty');
     <h1><?= Html::encode($this->title) ?></h1>
 
 
-<div class="wizyty-search">
 
+<div class="wizyty-update">
     <?php $form = ActiveForm::begin(); ?>
 
    
 
-    <?= $form->field($searchModel, 'id_stomatologa')->dropDownList(ArrayHelper::map(Stomatolodzy::find()
-        ->select(['imie','nazwisko','id_stomatologa'])->all(), 'id_stomatologa', 'displayName'), 
+    <?= $form->field($searchModel, 'id_stomatologa')->dropDownList(ArrayHelper::map(Wizyty::find()
+        ->select('id_stomatologa')->all(), 'id_stomatologa', 'id_stomatologa'), 
                                                                      ['class' => 'form-control inline-block']);?>
 
     <?= $form->field($searchModel, 'data')->widget(DatePicker::classname(), [
@@ -43,22 +44,11 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Zmiana wizyty');
         ]
     ]);?>
 
-    <?= $form->field($searchModel, 'godzina')->widget(TimePicker::classname(), [
-       
-    'pluginOptions' => [
-        'template' => 'dropdown',
-        'minuteStep' => 30,
-        'defaultTime'=> 'current',
-        'showSeconds' => false,
-        'showMeridian' => false,
-        'autoclose'=>true,
-        
-        ]
-    ]);?>
+    
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Szukaj'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Wyczysc formularz', ['update'], ['class' => 'btn btn-default']) ?>
+        <?= Html::resetButton('Wyczysc formularz', ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

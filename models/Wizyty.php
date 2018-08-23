@@ -29,7 +29,8 @@ class Wizyty extends \yii\db\ActiveRecord
     {
         return [
             [['id_pacjenta','id_stomatologa', 'data', 'godzina'], 'required'],
-            [['id_pacjenta', 'id_stomatologa'], 'integer'],
+            [['id_pacjenta', ], 'integer'],
+            [['id_stomatologa'], 'string'],
             [['data', 'godzina'], 'safe'],
         ];
     }

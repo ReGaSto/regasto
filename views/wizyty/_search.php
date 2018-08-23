@@ -3,8 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
-use kartik\time\TimePicker;
-use app\models\Stomatolodzy;
+
+use app\models\Wizyty;
 use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
@@ -21,8 +21,8 @@ use yii\helpers\ArrayHelper;
 
    
 
-    <?= $form->field($model, 'id_stomatologa')->dropDownList(ArrayHelper::map(Stomatolodzy::find()
-        ->select(['imie','nazwisko','id_stomatologa'])->all(), 'id_stomatologa', 'displayName'), 
+    <?= $form->field($model, 'id_stomatologa')->dropDownList(ArrayHelper::map(Wizyty::find()
+        ->select('id_stomatologa')->all(), 'id_stomatologa', 'id_stomatologa'), 
                                                                      ['class' => 'form-control inline-block']);?>
 
     <?= $form->field($model, 'data')->widget(DatePicker::classname(), [
@@ -38,18 +38,7 @@ use yii\helpers\ArrayHelper;
         ]
     ]);?>
 
-    <?= $form->field($model, 'godzina')->widget(TimePicker::classname(), [
-       
-    'pluginOptions' => [
-        'template' => 'dropdown',
-        'minuteStep' => 30,
-        'defaultTime'=> 'current',
-        'showSeconds' => false,
-        'showMeridian' => false,
-        'autoclose'=>true,
-        
-        ]
-    ]);?>
+   
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Szukaj wolnych terminów'), ['class' => 'btn btn-primary']) ?>

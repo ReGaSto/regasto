@@ -18,7 +18,8 @@ class WizytySearch extends Wizyty
     public function rules()
     {
         return [
-            [['id_pacjenta', 'id_stomatologa'], 'integer'],
+            [['id_pacjenta'], 'integer'],
+            [['id_stomatologa'], 'string'],
             [['data', 'godzina'], 'safe'],
         ];
     }

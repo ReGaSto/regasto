@@ -30,6 +30,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <p>
         <?= Html::a(Yii::t('app', 'Rezerwacja nowego terminu'), ['create'], ['class' => 'btn btn-success'])?>
         </p>
+        
+        <h4>UWAGA! </br> Kilknięcie ikony ołówka: <span class="glyphicon glyphicon-pencil"></span> w celu edycji wizyty automatycznie kasuje tę wizytę i uruchamia tryb rezerwacji nowej wizyty. 
+        W tym trybie jest również możliwa ponowna rezerwacja pierwotnego terminu.</h4>
 
         <?= GridView::widget([
         'dataProvider' => $dataProvider,
