@@ -4,8 +4,8 @@ use yii\helpers\Html;
 use yii\web\JsExpression;
 use yii\web\JqueryAsset;
 
-/* @var $this yii\web\View */
 $this->title = 'REZERWACJA';
+$this->params['breadcrumbs'][] = $this->title;
 
 /*$this->registerJs($DragJS);*/
 ?>

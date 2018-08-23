@@ -52,7 +52,7 @@ AppAsset::register($this);
     ];
     if(isset(Yii::$app->user->identity->role) && Yii::$app->user->identity->role === 30)
     {
-        array_push($navItem, ['label' => 'Admin', 'url' => ['/site/index_admin']]);   //dodano KalendarzAdmin
+        array_push($navItem, ['label' => 'Admin', 'url' => ['/site/admin']]);   //dodano KalendarzAdmin
     } else {
          
     }
