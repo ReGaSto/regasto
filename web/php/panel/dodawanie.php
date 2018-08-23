@@ -154,8 +154,8 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === '30' )
                     </label>
                     </div>
                     </div>
-                    <input type="hidden" id="accessToken" name="accessToken" value="<?php echo md5(random_bytes(5)); ?>"> 
-                    <input type="hidden" id="authKey" name="authKey" value="<?php echo password_hash(random_bytes(10),  PASSWORD_DEFAULT); ?>">
+                    <input type="hidden" id="accessToken" name="accessToken" value="<?php echo password_hash(random_bytes(10),  PASSWORD_DEFAULT); ?>"> 
+                    <input type="hidden" id="authKey" name="authKey" value="<?php echo md5(random_bytes(5)); ?>">
                     <div class="col">
                     </br>
                     <input class="btn btn-success btn-lg btn-block" type="submit" name="dodaj" value="Dodaj" />
