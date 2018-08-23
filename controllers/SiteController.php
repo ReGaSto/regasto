@@ -62,6 +62,13 @@ class SiteController extends Controller
      *
      * @return string
      */
+    
+        public function actionAdmin()       //dodano akcję dla strony głównej admina Yii2
+    {
+        return $this->render('admin');
+    }
+    
+    
     public function actionIndex()
     {
         return $this->render('index');
