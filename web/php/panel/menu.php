@@ -19,7 +19,7 @@
                 <a class="nav-item nav-link" href="dodawanie.php">Dodawanie</a>
                 <a class="nav-item nav-link" href="odejmowanie.php">Odejmowanie</a>
                 <a class="nav-item nav-link" href="zmienianie.php">Zmienianie</a>
-                <!--<a class="nav-item nav-link" href="#">Nadawanie</a>-->
+                <a class="nav-item nav-link" href="plan.php">Plan</a>
                 <a class="nav-item nav-link" href="recepta.php">Recepta</a>
                 <a class="nav-item nav-link" href="PDO_Terminy.php">Wolne<br>Terminy</a>
                 <a class="nav-item nav-link" href="PDO_Wolne.php">Dni<br>Wolne</a>
