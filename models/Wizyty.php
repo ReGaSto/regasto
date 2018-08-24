@@ -42,7 +42,7 @@ class Wizyty extends \yii\db\ActiveRecord
     {
         return [
             'id_pacjenta' => Yii::t('app', 'Id Pacjenta'),
-            'id_stomatologa' => Yii::t('app', 'Id Stomatologa'),
+            'id_stomatologa' => Yii::t('app', 'Imię i nazwisko lekarza'),
             'data' => Yii::t('app', 'Data'),
             'godzina' => Yii::t('app', 'Godzina'),
         ];

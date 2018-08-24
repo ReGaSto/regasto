@@ -69,10 +69,10 @@ class WizytyController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id_stomatologa, $data, $godzina)
+    public function actionView($data, $godzina)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id_stomatologa, $data, $godzina),
+            'model' => $this->findModel($data, $godzina),
         ]);
     }
 
@@ -95,9 +95,9 @@ class WizytyController extends Controller
        
     }
     
-    public function actionBook($id_stomatologa, $data, $godzina)
+    public function actionBook($data, $godzina)
     {
-        $model = $this->findModel($id_stomatologa, $data, $godzina);
+        $model = $this->findModel($data, $godzina);
         $model->id_pacjenta = (Yii::$app->user->identity->id);//Dodano M.Kurant //tutaj należy wprowadzić zmienną zawierającą id zalogowanego pacjenta
         $model->update();
         
@@ -117,13 +117,13 @@ class WizytyController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id_stomatologa, $data, $godzina)
+    public function actionUpdate($data, $godzina)
     {
         //JFi: poniżej wyzerowanie numeru pacjenta w rekordzie - co oznacza, że ten rekord tj. termin, data i staomatolog wracają do puli wolnych terminów.
         //przydałoby się tutaj wstawić jakies wyskakujące okienko informujące, 
         //że aby zmienić rezerwację należy skasować dotychczasową rezerwację i wybrać nową wizytę.
         //i że po skasowaniu nie będzie możliwe przerwania procesu aktualizacji.
-        $model = $this->findModel($id_stomatologa, $data, $godzina);
+        $model = $this->findModel($data, $godzina);
         $model->id_pacjenta = 0;
         $model->update();
         
@@ -147,9 +147,9 @@ class WizytyController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id_stomatologa, $data, $godzina)
+    public function actionDelete($data, $godzina)
     {
-       $model = $this->findModel($id_stomatologa, $data, $godzina);
+       $model = $this->findModel($data, $godzina);
        $model->id_pacjenta = 0;
        $model->update();
         
@@ -171,9 +171,9 @@ class WizytyController extends Controller
      * @return Wizyty the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id_stomatologa, $data, $godzina)
+    protected function findModel($data, $godzina)
     {
-        if (($model = Wizyty::findOne(['id_stomatologa' => $id_stomatologa, 'data' => $data, 'godzina' => $godzina])) !== null) {
+        if (($model = Wizyty::findOne(['data' => $data, 'godzina' => $godzina])) !== null) {
             return $model;
         }
 
