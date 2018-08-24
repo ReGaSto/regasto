@@ -56,8 +56,8 @@ $pdf->SetFont('Arial','',12);
 //nagłówek
 $pdf->Cell(50,10,'RECEPTA',1,0); 
 $pdf->SetFont('Courier','I',10);
-$szczeka = "Szczęka bez zębów nie boli";
-$pdf->Cell(100,10,$szczeka,1,0);
+$motto = "Profesjonalizm gwarantem satysfakcji klienta!";
+$pdf->Cell(100,10,$motto,1,0);
 $pdf->SetFont('Arial','',12);
 //dla kogo
 $pacjent = $_POST['rimie'];
@@ -73,7 +73,7 @@ $pdf->Cell(25,10,'',1,1);
 //pierwsza linia
 $pdf->Cell(0,5,'',0,1); 
 $pdf->Cell(75,10,'Nazwa leku',1,0); 
-$pdf->Cell(25,10,'Zniżka',1,0); 
+$pdf->Cell(25,10,'Ulga %',1,0); 
 $pdf->Cell(50,10,'Dawka',1,1); 
 
 //druga linia
