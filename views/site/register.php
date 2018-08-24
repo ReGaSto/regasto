@@ -28,10 +28,16 @@ $this->params['breadcrumbs'][] = $this->title;
     	<?= $form->field($model, 'username')->textInput(['autofocus' => true]); //automatycznie aktywne M. Kurant ?> 
     	<?= $form->field($model, 'email')->textInput();	?>
     	<?= $form->field($model, 'password')->passwordInput(); ?>
-
+        <?= $form->field($model, 'imie')->textInput(); ?>
+        <?= $form->field($model, 'nazwisko')->textInput(); ?>
+        <?= $form->field($model, 'pesel')->textInput(); ?>
+        <?= $form->field($model, 'mieszka')->textArea(); ?>
+        <?= $form->field($model, 'tel')->textInput(); ?>
+        
+        
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
-    	<?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
+    	<?= Html::submitButton('Zarejestruj się', ['class' => 'btn-lg btn-danger']) ?>
     		</div>
     	</div>
 

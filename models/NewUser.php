@@ -61,6 +61,11 @@ class NewUser extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'username' => 'Login',
             'email' => 'E-mail',
             'password' => 'Hasło',
+            'imie' => 'Imię',
+            'nazwisko' => 'Nazwisko',
+            'pesel' => 'PESEL',
+            'mieszka' => 'Adres',
+            'tel' => 'Telefon',
                 ];
     }
 
