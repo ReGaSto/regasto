@@ -1,20 +1,29 @@
 <?php   
         require_once 'naglowek.php';
         require_once 'menu.php';
+        //require_once '../../../config/param_db.php';
+        //require_once 'PDO_bd.php';
 ?>
 
         <h1>Przeglądanie bazy danych</h1>
         <div class="table-responsive">
 <?php
-$con = mysqli_connect('localhost', 'root', '', 'regasto');
-$sql = "SELECT * FROM new_user";
-            $result = mysqli_query($con, $sql);
+//$con = mysqli_connect('localhost', 'root', '', 'regasto');
+$psql = "SELECT * FROM new_user";
+//$presult = mysqli_query($con, $psql);
+//$ile = mysqli_num_rows($result); 
+            $presult = $connect->query($psql);
+            $presult->execute();
+            //$presult->store_result();
+            $psql2 = "SELECT COUNT('id') AS ile FROM new_user";
+            $presult2 = $connect->query($psql2);
+            $ile = $presult2->execute();
+            //print_r($ile);
+            //$row = $presult->fetch();
 
-$ile = mysqli_num_rows($result); 
-
-if (isset($_SESSION['role']) && $ile>=1 && $_SESSION['role'] === '30')                 
+        if (isset($_SESSION['role']) && $ile>=1 && $_SESSION['role'] === '30')                 
 {
-echo '</br><table class="table table-hover table-sm table-bordered"><caption>Lista użytkowników</br>Ranga: 30 - administrator, 20 - lekarz, 15 - operator, 10 - pacjent.</caption><thead class="thead-light"><tr>';    
+echo '</br><table class="table table-hover table-sm table-bordered"><caption>Lista użytkowników</br>Ranga: 30 - administrator, 20 - lekarz, 15 - operator, 10 - pacjent.</caption><thead class="thead-light"><tr>';
 echo<<<END
 <th>ID</th>
 <th>Imię</th>
@@ -30,9 +39,10 @@ echo<<<END
 </thead></tr><tr>
 END;
 
-for ($i = 1; $i <= $ile; $i++) 
-	{
-		$row1 = mysqli_fetch_assoc($result);
+//for ($i = 1; $i <= $ile; $i++ ) 
+while($row1 = $presult->fetch( PDO::FETCH_ASSOC ))
+	{       //$row1 = $presult->fetch( PDO::FETCH_ASSOC );
+                //$row1 = mysqli_fetch_assoc($presult);
 			$k1 = $row1['id'];
 			$k2 = $row1['imie'];
                         $k3 = $row1['nazwisko'];
@@ -78,9 +88,10 @@ echo<<<END
 </thead></tr><tr>
 END;
 
-for ($i = 1; $i <= $ile; $i++) 
+//for ($i = 1; $i <= $ile; $i++)
+while($row1 = $presult->fetch( PDO::FETCH_ASSOC ))
 	{
-		$row1 = mysqli_fetch_assoc($result);
+		//$row1 = mysqli_fetch_assoc($presult);
 			$k1 = $row1['id'];
 			$k2 = $row1['imie'];
                         $k3 = $row1['nazwisko'];
@@ -116,9 +127,10 @@ echo<<<END
 </thead></tr><tr>
 END;
 
-for ($i = 1; $i <= $ile; $i++) 
+//for ($i = 1; $i <= $ile; $i++) 
+while($row1 = $presult->fetch( PDO::FETCH_ASSOC ))
 	{
-		$row1 = mysqli_fetch_assoc($result);
+		//$row1 = mysqli_fetch_assoc($presult);
 			$k1 = $row1['id'];
 			$k2 = $row1['imie'];
                         $k3 = $row1['nazwisko'];
@@ -144,4 +156,3 @@ echo '</tr></table></div>';
             }
 
     require_once 'stopka.php';
-    

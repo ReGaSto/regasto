@@ -1,17 +1,18 @@
 <?php   
         require_once 'naglowek.php';
         require_once 'menu.php';
+
 ?>
         <h1>Panel pracownika</h1>
         <?php
-
+/*
         if (isset($_POST['zaloguj'], $_POST['login'], $_POST['role'])) {
                  
             $uzyt = $_POST['login'];
             $hasl = password_hash($_POST['haslo'], PASSWORD_DEFAULT);
             $rang = $_POST['role'];
             $sql = "SELECT role FROM new_user WHERE username=$uzyt AND password=$hasl";
-            $result = mysqli_query($con, $sql);
+            $result = mysqli_query($connect, $sql);
             $row = mysqli_fetch_row($result);
             echo $hasl;
             echo $row[0];
@@ -36,7 +37,11 @@
                 $_POST = array();
             echo '<p>Zaloguj się by zacząć pracę.</p>';
            
+ * 
+ */
             ?>
+ 
+ 
             <form action="powitanie.php" method="POST"> 
                 <div class="form-group">
                     <div class="row">
@@ -78,7 +83,7 @@
                     
             </form>
     <?php
-            }   
+            //}   
           require_once 'stopka.php';  
           ?>
 

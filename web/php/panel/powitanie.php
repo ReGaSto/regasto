@@ -1,6 +1,8 @@
 <?php   
         require_once 'naglowek.php';
         require_once 'menu.php';
+        //require_once '../../../config/param_db.php';
+        //require_once 'PDO_bd.php';
 ?>
 
         <h1>Panel pracownika</h1>
@@ -12,8 +14,12 @@
             $hasl = $_POST['haslo'];
             $rang = $_POST['role'];
             $sql = "SELECT role, password FROM new_user WHERE username='$uzyt'";
-            $result = mysqli_query($con, $sql);
-            $row = mysqli_fetch_row($result);
+            //$result = mysqli_query($connect, $sql);
+            $result = $connect->prepare($sql);
+            $result->execute();
+            $row = $result->fetch();
+            //$row->execute();
+            //$row = mysqli_fetch_row($result);
             
             if (($rang === $row[0])&& password_verify($hasl, $row[1])){ 
                    
@@ -21,7 +27,7 @@
                 $_SESSION['login'] = $uzyt;
                 $_SESSION['role'] = $rang;
                 echo "Zostałeś pomyślnie zalogowany <b>$uzyt</b>!";
-                echo $_SESSION['role'];
+                //echo $_SESSION['role'];
                 } 
             else 
                 {

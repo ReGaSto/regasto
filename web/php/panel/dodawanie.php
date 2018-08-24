@@ -7,7 +7,7 @@
         
 <?php
 //M.K dodano indeks UNIQUE email, pesel i usernamew tabeli new_user i zmieniono rangi 30,20,15,10 domyślna 10
-$con = mysqli_connect('localhost', 'root', '', 'regasto');
+//$con = mysqli_connect('localhost', 'root', '', 'regasto');
 
 if (isset($_SESSION['role'], $_POST['dodaj'], $_POST['login']) && ($_SESSION['role'] === '30' || $_SESSION['role'] === '20' || $_SESSION['role'] === '15'))                 
 {       $duzyt = $_POST['login'];
@@ -31,7 +31,9 @@ if (isset($_SESSION['zalogowany'], $_POST['dodaj']) && ($_SESSION['role'] === '3
             $dpes = $_POST['pesel'];
                       
             $dsql = "INSERT INTO new_user (username, email, password, authKey, accessToken, role, mieszka, tel, imie, nazwisko, notatka, pesel) VALUES ( '$duzyt', '$dem', '$dhasl', '$dakey', '$datok', '$drang', '$dmie', '$dtel', '$dim', '$dnaz', '$dnot', '$dpes')";
-            $dresult = mysqli_query($con, $dsql);            
+            //$dresult = mysqli_query($con, $dsql);  
+            $dresult = $connect->query($dsql);
+            //$ile = $dresult->execute();
             }
 else
 {}
@@ -50,7 +52,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === '30' )
                     <label for="email">E-mail</label>
                     <input class="form-control" type="email" name="email" maxlength="80" required/><br />
                     <label for="pesel">PESEL</label>
-                    <input class="form-control" type="text" name="pesel" /><br />
+                    <input class="form-control" type="text" name="pesel" maxlength="11"/><br />
                     </div>
                     <div class="col">
                     <label for="nazwisko">Nazwisko</label>

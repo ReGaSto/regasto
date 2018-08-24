@@ -18,11 +18,11 @@
           echo '<a class="nav-item nav-link" href="przegladanie.php">Przeglądanie</a>
                 <a class="nav-item nav-link" href="dodawanie.php">Dodawanie</a>
                 <a class="nav-item nav-link" href="odejmowanie.php">Odejmowanie</a>
-                <a class="nav-item nav-link" href="#">Zmienianie</a>
-                <a class="nav-item nav-link" href="#">Nadawanie</a>
-                <!--<a class="nav-item nav-link" href="#">Generator</a>-->
-                <a class="nav-item nav-link" href="PDO_Terminy.php"><strong>Wolne<br>Terminy</strong></a>
-                <a class="nav-item nav-link" href="PDO_Wolne.php"><strong>Dni<br>Wolne</strong></a>
+                <a class="nav-item nav-link" href="zmienianie.php">Zmienianie</a>
+                <!--<a class="nav-item nav-link" href="#">Nadawanie</a>-->
+                <a class="nav-item nav-link" href="recepta.php">Recepta</a>
+                <a class="nav-item nav-link" href="PDO_Terminy.php">Wolne<br>Terminy</a>
+                <a class="nav-item nav-link" href="PDO_Wolne.php">Dni<br>Wolne</a>
                 <a class="nav-item nav-link" href="wylogowano.php">Wyloguj</a>';
       }
       else {

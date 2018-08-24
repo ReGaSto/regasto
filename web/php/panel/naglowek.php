@@ -1,6 +1,9 @@
 <?php
 session_start();
-$con = mysqli_connect('localhost', 'root', '', 'regasto');
+//$con = mysqli_connect('localhost', 'root', '', 'regasto');
+
+        require_once '../../../config/param_db.php';
+        require_once 'PDO_bd.php';
 ?>
 <!DOCTYPE html>
 <html lang="pl-PL">

@@ -5,7 +5,7 @@
 // Tutaj pobiera plik z konfiguracją BD Regasto
 require_once '../../../config/param_db.php';
 
-Echo 'Generacja Terminów do Wizyt<br><br>';
+//Echo 'Generacja Terminów do Wizyt<br><br>';
 // Skrypt wylicza daty z godzinami co 30 minut = 1800 sekund + usuwa z tablicy godziny nierobocze
     
 // DEKLARACJA Zmiennych
@@ -32,7 +32,7 @@ Echo 'Generacja Terminów do Wizyt<br><br>';
 
     $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    echo 'Nawiązano połączenie z bazą!';
+    //echo 'Nawiązano połączenie z bazą!';
 
 } catch(PDOException $e){
 
