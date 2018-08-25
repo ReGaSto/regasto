@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 if(Yii::$app->user->isGuest === false){     //M.Kurant dodano warunek bo bez tego wywalało error gdy nie było się zalogowanym (problem z $myusername)
 $myUsername = \Yii::$app->user->identity->id; 
 $ajaxurl = Url::toRoute('kalendarz/ajaxdb');
-$windowlocationurl = Url::toRoute('/kalendarz2');
+$windowlocationurl = Url::toRoute('/wizyty');
 
 
 $JSCode = <<<EOF
@@ -44,12 +44,12 @@ function(start, end) {
    var ajaxStart = start.toJSON();
    var ajaxTitle = eventData.title;
    $.ajax({
-       url: ajaxurl, //index.php?r=kalendarz%2Fajaxdb       
+   url: ajaxurl, //index.php?r=kalendarz%2Fajaxdb       
    type: 'GET',
        data: { ajaxTitle: ajaxTitle, ajaxStart: ajaxStart},
        success: function () {
-                    //alert('Zarezerwowano termin na: ' + terazdata.format());
-                    //window.location.href = windowlocationurl;
+                    alert('Zarezerwowano termin na: ' + terazdata.format());
+                    window.location.href = windowlocationurl;
                 },
         error: function () {
             alert("Poczekaj na potwierdzenie wizyty");
@@ -101,7 +101,7 @@ EOF;
                     'eventClick' => new JsExpression($JSEventClick),
                     'defaultDate' => date('Y-m-d'),
                     'minTime' => '08:00:00',
-                    'maxTime' => '21:00:00',
+                    'maxTime' => '22:00:00',
                     'forceEventDuration' => true,
                     'defaultTimedEventDuration' => '00:30:00',
                     'eventOverlap' => false,
@@ -111,7 +111,7 @@ EOF;
                     'businessHours'=> [
                        'dow'=> [ 1, 2, 3, 4, 5 ], // Monday - Thursday
                        'start'=> '08:00', // a start time (10am in this example)
-                       'end'=> '20:00', // an end time (6pm in this example)
+                       'end'=> '22:00', // an end time (6pm in this example)
                     ],
                     'selectConstraint' => 'businessHours',
                     'selectOverlap' => false,
