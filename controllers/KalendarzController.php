@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl; //M.Kurant
 use app\models\AccessRule;  //M.Kurant
 use app\models\NewUser;  //M.Kurant
+use DateTime;
 
 /**
  * KalendarzController implements the CRUD actions for Kalendarz model.
@@ -111,16 +112,26 @@ public function behaviors()
         $data = Yii::$app->request->get();
         $title_array = explode(": ", $data['ajaxTitle']);
         $data_array = explode(": ", $data['ajaxStart']);
-        $model->id_pacjenta=$title_array[0];
-        $model->data = $data_array[0];
-        $model->godzina= $data_array[0];
-        $model->id_stomatologa = 1;
-        $model->load($_GET);
-        $model->save();
+        $title_id_pacjenta = $title_array[0];
+        $datetime_z_fullcalendar = $data_array[0];
         
-       
+        $datagodzina = new DateTime($datetime_z_fullcalendar);
+        $data_format = $datagodzina->format('Y-m-d');
+        $godzina_format = $datagodzina->format('H:i:s');
+        
+        
+        $model->id_pacjenta = $title_id_pacjenta;
+        $model->data = $datetime_z_fullcalendar;
+        $model->godzina = $datetime_z_fullcalendar;
+        //$model->id_stomatologa = 'Jan Borowaniec';
+        //$model->load($_GET);
+        Yii::$app->db->createCommand("UPDATE wizyty SET id_pacjenta = $title_id_pacjenta WHERE data = '$data_format' AND godzina = '$godzina_format';")
+        ->execute();
+        //$model->save();
+        return $this->redirect(['view', 'id']);
+        
     } 
-     return $this->redirect(['update', 'id' => $model->id]);
+   
 }
 
     /**
