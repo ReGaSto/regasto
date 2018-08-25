@@ -1,5 +1,4 @@
 <?php
-
 namespace app\models;
 
 use Yii;
@@ -14,7 +13,9 @@ use Yii;
  */
 class Wizyty extends \yii\db\ActiveRecord
 {
+
     /**
+     *
      * {@inheritdoc}
      */
     public static function tableName()
@@ -23,19 +24,45 @@ class Wizyty extends \yii\db\ActiveRecord
     }
 
     /**
+     *
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id_pacjenta','id_stomatologa', 'data', 'godzina'], 'required'],
-            [['id_pacjenta', ], 'integer'],
-            [['id_stomatologa'], 'string'],
-            [['data', 'godzina'], 'safe'],
+            [
+                [
+                    'id_pacjenta',
+                    'id_stomatologa',
+                    'data',
+                    'godzina'
+                ],
+                'required'
+            ],
+            [
+                [
+                    'id_pacjenta'
+                ],
+                'integer'
+            ],
+            [
+                [
+                    'id_stomatologa'
+                ],
+                'string'
+            ],
+            [
+                [
+                    'data',
+                    'godzina'
+                ],
+                'safe'
+            ]
         ];
     }
 
     /**
+     *
      * {@inheritdoc}
      */
     public function attributeLabels()
@@ -44,7 +71,7 @@ class Wizyty extends \yii\db\ActiveRecord
             'id_pacjenta' => Yii::t('app', 'Id Pacjenta'),
             'id_stomatologa' => Yii::t('app', 'Imię i nazwisko lekarza'),
             'data' => Yii::t('app', 'Data'),
-            'godzina' => Yii::t('app', 'Godzina'),
+            'godzina' => Yii::t('app', 'Godzina')
         ];
     }
 }
