@@ -31,5 +31,19 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Rezerwacja wizyty');
 	<p>Proszę kliknąć ikonę oka przy wybranym terminie wizyty, aby
 		dokończyć proces rezerwacji.</p>   
 
-   <?=GridView::widget(['dataProvider' => $dataProvider,'filterModel' => $searchModel,'columns' => ['data','godzina','id_stomatologa',['class' => 'yii\grid\ActionColumn','template' => '{view}']]]); ?>
+   <?=GridView::widget(['dataProvider' => $dataProvider,
+                        'filterModel' => $searchModel,
+                        'columns' => ['data','godzina','id_stomatologa',
+                                     ['class' => 'yii\grid\ActionColumn',
+                                      'template' => '{view}',
+                                      'buttons' => [
+                                          'view' => function ($url, $model) {
+                                          return Html::a('<button type="button" class="btn btn-primary btn-xs">Rezerwuj</button>', $url, [
+                                              'title' => Yii::t('app', 'Rezerwuj'),
+                                          ]);
+                                          }
+                                          ]
+                                ]
+                        ]
+   ]); ?>
 </div>

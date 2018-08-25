@@ -29,12 +29,30 @@ if (Yii::$app->user->isGuest) // Dodano warunek ukrywający tabelę dla niezarej
         </p>
 
 	<h4>
-		UWAGA! </br> Kilknięcie ikony ołówka: <span
-			class="glyphicon glyphicon-pencil"></span> w celu edycji wizyty
+		UWAGA! </br> Kilknięcie przycisku: <button type="button" class="btn btn-primary btn-xs">Aktualizuj rezerwację</button> w celu edycji wizyty
 		automatycznie kasuje tę wizytę i uruchamia tryb rezerwacji nowej
 		wizyty. W tym trybie jest również możliwa ponowna rezerwacja
 		pierwotnego terminu.
 	</h4>
 
-        <?=GridView::widget(['dataProvider' => $dataProvider,'filterModel' => $searchModel,'columns' => ['data','godzina','id_stomatologa',['class' => 'yii\grid\ActionColumn','template' => '{update} {delete}']]]);}?>
+        <?=GridView::widget(['dataProvider' => $dataProvider,
+                             'filterModel' => $searchModel,
+                             'columns' => ['data',
+                                           'godzina',
+                                           'id_stomatologa',
+                                           ['class' => 'yii\grid\ActionColumn',
+                                            'template' => '{update} {delete}',
+                                               'buttons' => [
+                                                   'update' => function ($url, $model) {
+                                                   return Html::a('<button type="button" class="btn btn-primary btn-xs">Aktualizuj rezerwację</button>', $url, [
+                                                       'title' => Yii::t('app', 'Aktualizuj'),
+                                                   ]);
+                                                   },
+                                                   
+                                                   ]
+                                           ]
+                             ]
+            
+        ]);
+}?>
 </div>
