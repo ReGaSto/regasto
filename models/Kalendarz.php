@@ -30,8 +30,10 @@ class Kalendarz extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['data', 'godzina'], 'required'],           
-            [['id_stomatologa', 'id_pacjenta'], 'integer'],
+            [['data', 'godzina', 'id_stomatologa'], 'required'],
+            [['data', 'godzina'], 'safe'],
+            [['id_pacjenta'], 'integer'],
+            [['id_stomatologa'], 'string', 'max' => 30],
         ];
     }
 
