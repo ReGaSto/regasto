@@ -128,7 +128,7 @@ public function behaviors()
         Yii::$app->db->createCommand("UPDATE wizyty SET id_pacjenta = $title_id_pacjenta WHERE data = '$data_format' AND godzina = '$godzina_format';")
         ->execute();
         //$model->save();
-        return $this->redirect(['view', 'id']);
+        //return $this->redirect(['view', 'id']);
         
     } 
    
