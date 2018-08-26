@@ -37,6 +37,7 @@ function(start, end) {
     
    if(start.isBefore(moment())) {
    $('#w0').fullCalendar('unselect');
+   alert('Błędna data, zarezerwuj termin przyszły:');     
    return false;
    }
    else {
