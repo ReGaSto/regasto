@@ -26,9 +26,20 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Zmiana wizyty');
 	<div class="wizyty-update">
     <?php $form = ActiveForm::begin(); ?>
 
-   	<?=$form->field($searchModel, 'id_stomatologa')->dropDownList(ArrayHelper::map(Wizyty::find()->select('id_stomatologa')->all(), 'id_stomatologa', 'id_stomatologa'), ['class' => 'form-control inline-block']);?>
+   	<?=$form->field($searchModel, 'id_stomatologa')
+   	    ->dropDownList(ArrayHelper::map(Wizyty::find()
+   	    ->select('id_stomatologa')->all(), 'id_stomatologa', 'id_stomatologa'), ['class' => 'form-control inline-block']);?>
 
-    <?=$form->field($searchModel, 'data')->widget(DatePicker::classname(), ['language' => 'pl', 'options' => ['placeholder' => 'Wprowadz datę ...'],'pluginOptions' => ['todayHighlight' => true,'format' => 'yyyy-mm-dd','daysOfWeekDisabled' => [0,6],'startDate' => 'time()','multidate' => true,'autoclose' => true]]);?>
+    <?=$form->field($searchModel, 'data')
+        ->widget(DatePicker::classname(), [
+            'language' => 'pl', 
+            'options' => ['placeholder' => 'Wprowadz datę ...'],
+            'pluginOptions' => ['todayHighlight' => true,
+                                'format' => 'yyyy-mm-dd',
+                                'daysOfWeekDisabled' => [0,6],
+                                'startDate' => 'time()',
+                                'multidate' => true,
+                                'autoclose' => true]]);?>
 
    <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Szukaj'), ['class' => 'btn btn-primary']) ?>
@@ -42,10 +53,10 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Zmiana wizyty');
     <?=GridView::widget(['dataProvider' => $dataProvider,'filterModel' => $searchModel,'columns' => ['data','godzina','id_stomatologa',
             ['class' => 'yii\grid\ActionColumn',
              'template' => '{view}',
-                'buttons' => [
-                    'view' => function ($url, $model) {
-                    return Html::a('<button type="button" class="btn btn-primary btn-xs">Rezerwuj</button>', $url, [
-                        'title' => Yii::t('app', 'Rezerwuj'),
+             'buttons' => [
+                 'view' => function ($url, $model) {
+                  return Html::a('<button type="button" class="btn btn-primary btn-xs">Rezerwuj</button>', $url, [
+                     'title' => Yii::t('app', 'Rezerwuj'),
                     ]);
                     }
                     ]

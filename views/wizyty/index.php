@@ -29,10 +29,7 @@ if (Yii::$app->user->isGuest) // Dodano warunek ukrywający tabelę dla niezarej
         </p>
 
 	<h4>
-		UWAGA! </br> Kilknięcie przycisku: <button type="button" class="btn btn-primary btn-xs">Aktualizuj rezerwację</button> w celu edycji wizyty
-		automatycznie kasuje tę wizytę i uruchamia tryb rezerwacji nowej
-		wizyty. W tym trybie jest również możliwa ponowna rezerwacja
-		pierwotnego terminu.
+		
 	</h4>
 
         <?=GridView::widget(['dataProvider' => $dataProvider,
@@ -44,11 +41,17 @@ if (Yii::$app->user->isGuest) // Dodano warunek ukrywający tabelę dla niezarej
                                             'template' => '{update} {delete}',
                                                'buttons' => [
                                                    'update' => function ($url, $model) {
-                                                   return Html::a('<button type="button" class="btn btn-primary btn-xs">Aktualizuj rezerwację</button>', $url, [
-                                                       'title' => Yii::t('app', 'Aktualizuj'),
-                                                   ]);
+                                                   return Html::a('<button type="button" class="btn btn-primary btn-xs">Aktualizuj rezerwację</button>', $url, 
+                                                       ['data-confirm' => 'UWAGA! 
+Po przejsciu w tryb aktualizacji nie będzie możliwe anulowanie zmian. 
+Czy na pewno chcesz kontynuować?', 'data-method' =>'POST']
+                                                   );
                                                    },
-                                                   
+                                                   'delete' => function($url, $model) {
+                                                       return Html::a('<button class="btn btn-danger btn-xs">Odwłołaj rezerwację</button>', $url,
+                                                           ['data-confirm' => 'Czy na pewno chcesz odwołać tę wizytę?', 'data-method' =>'POST']
+                                                           );
+                                                   },
                                                    ]
                                            ]
                              ]
