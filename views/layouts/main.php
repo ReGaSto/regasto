@@ -43,8 +43,8 @@ AppAsset::register($this);
     //Dodano rejestrację wizyt do Menu B. Bugala
     $navItem = [
     ['label' => 'O nas', 'url' => ['/site/about']],
-    ['label' => 'Rejestracja wizyt', 'url' => ['/wizyty']],
-    ['label' => 'Szybka rejestracja', 'url' => ['/kalendarz']],
+    ['label' => 'Rezerwacja wizyt', 'url' => ['/wizyty']],
+    ['label' => 'Szybka rezerwacja', 'url' => ['/kalendarz']],
     ['label' => 'Oferta', 'url' => ['/site/oferta']],
     ['label' => 'Stomatolodzy', 'url' => ['/site/stomatolodzy']],
     ['label' => 'Kontakt', 'url' => ['/site/contact']],

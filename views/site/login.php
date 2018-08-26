@@ -5,6 +5,7 @@
 /* @var $model app\models\LoginForm */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;  //dodano M.Kurant
 
 $this->title = 'Logowanie';
@@ -13,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-login">
     <h1><?= Html::encode($this->title) ?></h1>
 <!--  BBdev: Dodałem tłumaczenie -->
-    <p>Aby zalogować się do aplikacji, wypełnij wymagane pola:</p>
+<p>Aby zalogować się do aplikacji, wypełnij wymagane pola:</p>
 
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',
@@ -35,9 +36,13 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
                 <!--  BBdev: Dodałem tłumaczenie -->
-                <?= Html::submitButton('Zaloguj', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                <?= Html::submitButton('Zaloguj się', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                <br><br><p>Jeśli nie posiadasz konta, kliknij przycisk "Stwórz konto"</p>
+                <a class="btn btn-success" href="<?php echo Url::toRoute('register'); ?>">Stwórz konto &raquo;</a>
             </div>
         </div>
+    
+    
 
     <?php ActiveForm::end(); ?>
 

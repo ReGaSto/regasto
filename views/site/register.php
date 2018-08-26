@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -37,7 +38,10 @@ $this->params['breadcrumbs'][] = $this->title;
         
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
-    	<?= Html::submitButton('Zarejestruj się', ['class' => 'btn-lg btn-danger']) ?>
+    	<?= Html::submitButton('Zarejestruj się', ['class' => 'btn btn-success']) ?>
+                
+                <br><br><p>Jeśli posiadasz już konto w systemie przejdź do strony logowania klikając na przycisk "Logowanie"</p>
+                <a class="btn btn-primary" href="<?php echo Url::toRoute('login'); ?>">Logowanie się &raquo;</a>
     		</div>
     	</div>
 
