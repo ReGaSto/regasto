@@ -34,7 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($model, 'pesel')->textInput(); ?>
         <?= $form->field($model, 'mieszka')->textArea(); ?>
         <?= $form->field($model, 'tel')->textInput(); ?>
-        
+    <p>Zakłądając konto w naszym systemie wyrażasz zgodę na naszą politykę prywatności związaną z RODO<br> oraz zapoznałeś się z regulaminem gabinetu stomatologicznego "Ząbek"<br>i w pełni go akceptujesz.
+        <a href="<?php echo Url::toRoute('rodo'); ?>">Regulamin &raquo;</a></p>
         
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
