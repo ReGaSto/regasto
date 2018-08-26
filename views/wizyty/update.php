@@ -52,6 +52,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Zmiana wizyty');
     
     <?=GridView::widget(['dataProvider' => $dataProvider,'filterModel' => $searchModel,'columns' => ['data','godzina','id_stomatologa',
             ['class' => 'yii\grid\ActionColumn',
+             'contentOptions' => ['style' => 'width:70px'],
              'template' => '{view}',
              'buttons' => [
                  'view' => function ($url, $model) {

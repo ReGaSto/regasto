@@ -28,9 +28,6 @@ if (Yii::$app->user->isGuest) // Dodano warunek ukrywający tabelę dla niezarej
         <?= Html::a(Yii::t('app', 'Rezerwacja nowego terminu'), ['create'], ['class' => 'btn btn-success'])?>
         </p>
 
-	<h4>
-		
-	</h4>
 
         <?=GridView::widget(['dataProvider' => $dataProvider,
                              'filterModel' => $searchModel,
@@ -38,10 +35,11 @@ if (Yii::$app->user->isGuest) // Dodano warunek ukrywający tabelę dla niezarej
                                            'godzina',
                                            'id_stomatologa',
                                            ['class' => 'yii\grid\ActionColumn',
+                                            'contentOptions' => ['style' => 'width:260px'],
                                             'template' => '{update} {delete}',
-                                               'buttons' => [
-                                                   'update' => function ($url, $model) {
-                                                   return Html::a('<button type="button" class="btn btn-primary btn-xs">Aktualizuj rezerwację</button>', $url, 
+                                            'buttons' => [
+                                                'update' => function ($url, $model) {
+                                                return Html::a('<button type="button" class="btn btn-primary btn-xs">Aktualizuj rezerwację</button>', $url, 
                                                        ['data-confirm' => 'UWAGA! 
 Po przejsciu w tryb aktualizacji nie będzie możliwe anulowanie zmian. 
 Czy na pewno chcesz kontynuować?', 'data-method' =>'POST']
