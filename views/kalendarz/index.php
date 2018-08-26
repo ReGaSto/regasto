@@ -27,16 +27,21 @@ $windowlocationurl = Url::toRoute('/wizyty');
 
 
 $JSCode = <<<EOF
-        
+
+            
 function(start, end) {
    var title =  '$myUsername';
    var ajaxurl = '$ajaxurl';
    var windowlocationurl = '$windowlocationurl';
-
-
    var eventData;
-   eventData = {title: title, start: start};
-   
+    
+   if(start.isBefore(moment())) {
+   $('#w0').fullCalendar('unselect');
+   return false;
+   }
+   else {
+        
+   eventData = {title: title, start: start};   
    var terazdata =  start;
    $('#w0').fullCalendar('renderEvent', eventData, true);
    
@@ -50,11 +55,12 @@ function(start, end) {
        success: function () {
                     alert('Zarezerwowano termin na: ' + terazdata.format());
                     window.location.href = windowlocationurl;
+        
                 },
         error: function () {
             alert("Poczekaj na potwierdzenie wizyty");
         }
-    }); 
+    });} 
 }
 EOF;
 $JSEventClick = <<<EOF
@@ -92,7 +98,7 @@ EOF;
                             'eventLimit' => 1 // adjust to 6 only for agendaWeek/agendaDay
                         ]
                     ],
-
+                   
                   
                     'droppable' => true,
                     'editable' => false,
@@ -106,10 +112,11 @@ EOF;
                     'defaultTimedEventDuration' => '00:30:00',
                     'eventOverlap' => false,
                     'defaultView'=> 'agendaWeek',
+               
                     'height' => 'auto',
                     'allDaySlot' => false,
                     'businessHours'=> [
-                       'dow'=> [ 1, 2, 3, 4, 5 ], // Monday - Thursday
+                       'dow'=> [ 1, 2, 3, 4, 5 ], // Monday - Friday
                        'start'=> '08:00', // a start time (10am in this example)
                        'end'=> '22:00', // an end time (6pm in this example)
                     ],
