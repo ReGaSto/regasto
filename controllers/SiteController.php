@@ -73,6 +73,10 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
+        public function actionRodo()
+    {
+        return $this->render('rodo');
+    }
     
     public function actionOferta()
     {
