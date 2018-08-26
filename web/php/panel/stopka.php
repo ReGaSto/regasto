@@ -1,7 +1,7 @@
 </div>
 </br>
 </br>
-<footer class="card-footer fixed-bottom">
+<footer style="" class="card-footer ">
     <div class="container">
          <table class="container">
         <td class="pull-left">&copy; Gabinet Stomatologiczny "Ząbek" <?= date('Y') ?></td>

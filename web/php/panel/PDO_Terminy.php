@@ -34,8 +34,7 @@ if (isset($_SESSION['zalogowany'], $_POST['dodaj']) && ($_SESSION['role'] === '3
     
 function kto_ma_dyzur($data_podana, $stomat1, $stomat2){    
 // Wyliczanie daty i dnia tygodnia (integer 0-6)
-$dni_pracy_stom1 = array('1','3','5');
-$dni_pracy_stom2 = array('2','4');    
+
 $data_sprawdzana = $data_podana;
 $data_sprawdzanaArray = explode('-',$data_sprawdzana);
 $data_sprawdzanaJulian = gregoriantojd($data_sprawdzanaArray[1], $data_sprawdzanaArray[2], $data_sprawdzanaArray[0]);
