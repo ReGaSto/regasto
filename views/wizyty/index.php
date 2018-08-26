@@ -26,6 +26,7 @@ if (Yii::$app->user->isGuest) // Dodano warunek ukrywający tabelę dla niezarej
     ?>
         <p>
         <?= Html::a(Yii::t('app', 'Rezerwacja nowego terminu'), ['create'], ['class' => 'btn btn-success'])?>
+        <?= Html::a(Yii::t('app','Szybka rezerwacja'), ['/kalendarz/index'], ['class' => 'btn btn-info']) ?>
         </p>
 
 
