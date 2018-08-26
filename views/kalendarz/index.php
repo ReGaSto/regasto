@@ -21,10 +21,23 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="body-content">
 <?php
 if(Yii::$app->user->isGuest === false){     //M.Kurant dodano warunek bo bez tego wywalało error gdy nie było się zalogowanym (problem z $myusername)
-$myUsername = \Yii::$app->user->identity->id; 
+$myUsername = \Yii::$app->user->identity->id;
+
+// Deklaracja adresów na potrzeby kalendarza rezerwacji
 $ajaxurl = Url::toRoute('kalendarz/ajaxdb');
 $windowlocationurl = Url::toRoute('/wizyty');
+// Wyliczanie daty i dnia tygodnia (integer 0-6) na potrzeby kalendarza
+$dzisiaj = date('Y-m-d', time());
+$dzisiajArray = explode('-',$dzisiaj);
+$dzisiajJulian = gregoriantojd($dzisiajArray[1], $dzisiajArray[2], $dzisiajArray[0]);
+// gregoriantojd($month, $day, $year)
+$dzien_tygodnia = jddayofweek($dzisiajJulian,0);
 
+$JSTodayDate = <<<EOF
+
+        
+        
+EOF;
 
 $JSCode = <<<EOF
 
@@ -106,14 +119,14 @@ EOF;
                     /*'drop' => new JsExpression($JSDropEvent),*/
                     'select' => new JsExpression($JSCode),
                     'eventClick' => new JsExpression($JSEventClick),
-                    'defaultDate' => date('Y-m-d'),
+                    'defaultDate' => $dzisiaj, //date('Y-m-d'),
+                    'firstDay' => $dzien_tygodnia,
                     'minTime' => '08:00:00',
                     'maxTime' => '22:00:00',
                     'forceEventDuration' => true,
                     'defaultTimedEventDuration' => '00:30:00',
                     'eventOverlap' => false,
                     'defaultView'=> 'agendaWeek',
-               
                     'height' => 'auto',
                     'allDaySlot' => false,
                     'businessHours'=> [
