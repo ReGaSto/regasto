@@ -3,6 +3,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\web\JsExpression;
 use yii\web\JqueryAsset;
+require_once '../config/param_stomatolog.php';
 
 $this->title = 'REZERWACJA';
 $this->params['breadcrumbs'][] = $this->title;
@@ -13,9 +14,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="jumbotron">
         
-        <h1>Rezerwacja wizyt - Regasto</h1>
+        <h1>Regasto - szybka rezerwacja</h1>
 
         <p class="lead">Wybierz termin, który cię interesuje</p>
+        <p>poniedziałek, środa, piątek - przyjmuje dr. <?php echo $stom1 ?><br>wtorek, czwartek -  przyjmuje dr. <?php echo $stom2 ?></p>
 
     </div>
     <div class="body-content">
@@ -66,13 +68,22 @@ function(start, end) {
    url: ajaxurl, //index.php?r=kalendarz%2Fajaxdb       
    type: 'GET',
        data: { ajaxTitle: ajaxTitle, ajaxStart: ajaxStart},
+        
+    complete: function(xhr,status){
+    alert('Zarezerwowano termin na: ' + terazdata.format()); 
+    window.location.href = windowlocationurl;
+        
+    },
+        
+
        success: function () {
-                    alert('Zarezerwowano termin na: ' + terazdata.format());
-                    window.location.href = windowlocationurl;
+                   
+        
+                    //window.location.href = windowlocationurl;
         
                 },
         error: function () {
-            alert("Poczekaj na potwierdzenie wizyty");
+            alert("Coś poszło nie tak - spróbuj zarezerwować ponownie");
         }
     });} 
 }
@@ -122,7 +133,7 @@ EOF;
                     'defaultDate' => $dzisiaj, //date('Y-m-d'),
                     'firstDay' => $dzien_tygodnia,
                     'minTime' => '08:00:00',
-                    'maxTime' => '22:00:00',
+                    'maxTime' => '21:00:00',
                     'forceEventDuration' => true,
                     'defaultTimedEventDuration' => '00:30:00',
                     'eventOverlap' => false,
