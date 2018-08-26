@@ -49,7 +49,7 @@ if (isset($_SESSION['zalogowany'], $_POST['dodaj']) && ($_SESSION['role'] === '3
         );} catch (Exception $e) {
 
     echo '<br><br><b>BŁĄD! Prawdopodobnie zdublowane wpisy sprawdź dokładnie wykasuj lub podaj prawidłowe ramy czasowe:</b><br><br>Komunikat błędu: ',  $e->getMessage(), "\n";
-     exit;
+     
 }
     }
     }
