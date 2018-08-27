@@ -30,16 +30,12 @@ $ajaxurl = Url::toRoute('kalendarz/ajaxdb');
 $windowlocationurl = Url::toRoute('/wizyty');
 // Wyliczanie daty i dnia tygodnia (integer 0-6) na potrzeby kalendarza
 $dzisiaj = date('Y-m-d', time());
-$dzisiajArray = explode('-',$dzisiaj);
-$dzisiajJulian = gregoriantojd($dzisiajArray[1], $dzisiajArray[2], $dzisiajArray[0]);
+$datestr = strtotime($dzisiaj);
+$dzien_tygodnia = date('w', $datestr);
+//$dzisiajArray = explode('-',$dzisiaj);
+//$dzisiajJulian = gregoriantojd($dzisiajArray[1], $dzisiajArray[2], $dzisiajArray[0]);
 // gregoriantojd($month, $day, $year)
-$dzien_tygodnia = jddayofweek($dzisiajJulian,0);
-
-$JSTodayDate = <<<EOF
-
-        
-        
-EOF;
+//$dzien_tygodnia = jddayofweek($dzisiajJulian,0);
 
 $JSCode = <<<EOF
 
