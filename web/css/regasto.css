@@ -32,7 +32,7 @@ and open the template in the editor.
     z-index: -1;
 }
 
-div.fullcalendar, .grid-view {
+div.fullcalendar, .grid-view, .table {
     background-color: white;
 }
 
@@ -40,4 +40,12 @@ div.fullcalendar, .grid-view {
     z-index: 0 !important;
     position: relative;
 }
+
+        .navbar-brand {
+            padding: 3px;
+        }
+        .navbar-brand img {
+            height: 100%;
+        }
+
 
