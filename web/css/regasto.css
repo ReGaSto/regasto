@@ -36,3 +36,8 @@ div.fullcalendar, .grid-view {
     background-color: white;
 }
 
+.footer {
+    z-index: 0 !important;
+    position: relative;
+}
+
