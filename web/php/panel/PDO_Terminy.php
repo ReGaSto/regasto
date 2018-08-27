@@ -36,11 +36,16 @@ if (isset($_SESSION['zalogowany'], $_POST['dodaj']) && ($_SESSION['role'] === '3
 function kto_ma_dyzur($data_podana, $stomat1, $stomat2, $dni_pracy_stom1, $dni_pracy_stom2){    
 // Wyliczanie daty i dnia tygodnia (integer 0-6)
 
-$data_sprawdzana = $data_podana;
-$data_sprawdzanaArray = explode('-',$data_sprawdzana);
-$data_sprawdzanaJulian = gregoriantojd($data_sprawdzanaArray[1], $data_sprawdzanaArray[2], $data_sprawdzanaArray[0]);
+$data_sprawdzana = date('Y-m-d', $data_podana);
+//$data_sprawdzanaArray = explode('-',$data_sprawdzana);
+//$data_sprawdzanaJulian = gregoriantojd($data_sprawdzanaArray[1], $data_sprawdzanaArray[2], $data_sprawdzanaArray[0]);
 // gregoriantojd($month, $day, $year)
-$sprawdzany_dzien_tygodnia = jddayofweek($data_sprawdzanaJulian,0);
+
+//$dzisiaj = date('Y-m-d', time());
+$datestr = strtotime($data_sprawdzana);
+$sprawdzany_dzien_tygodnia = date('w', $datestr);
+
+//$sprawdzany_dzien_tygodnia = jddayofweek($data_sprawdzanaJulian,0);
 if (in_array($sprawdzany_dzien_tygodnia, $dni_pracy_stom1)) {
  return $stomat1;   
 }
@@ -125,7 +130,7 @@ else
                 </br>
                 <input class="btn btn-success btn-lg btn-block" type="submit" name="dodaj" value="Dodaj" />
             </div>
-        </div>
+        </div>            
     </form>
         <?php
         }
