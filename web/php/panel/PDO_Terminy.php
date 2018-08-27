@@ -29,10 +29,11 @@ if (isset($_SESSION['zalogowany'], $_POST['dodaj']) && ($_SESSION['role'] === '3
     $odstep_czasowy = 1800; // W sekundach
     $godziny_wylaczone = array('21', '22', '23', '00', '01', '02', '03', '04', '05', '06', '07');
     $dni_tygodnia_wylaczone = array('0', '6'); // 0 - niedziela, 6 - sobota
+
     $czas_poczatkowy = strtotime($data_poczatkowa);
     $czas_koncowy = strtotime($data_koncowa);
     
-function kto_ma_dyzur($data_podana, $stomat1, $stomat2){    
+function kto_ma_dyzur($data_podana, $stomat1, $stomat2, $dni_pracy_stom1, $dni_pracy_stom2){    
 // Wyliczanie daty i dnia tygodnia (integer 0-6)
 
 $data_sprawdzana = $data_podana;
@@ -40,7 +41,6 @@ $data_sprawdzanaArray = explode('-',$data_sprawdzana);
 $data_sprawdzanaJulian = gregoriantojd($data_sprawdzanaArray[1], $data_sprawdzanaArray[2], $data_sprawdzanaArray[0]);
 // gregoriantojd($month, $day, $year)
 $sprawdzany_dzien_tygodnia = jddayofweek($data_sprawdzanaJulian,0);
-
 if (in_array($sprawdzany_dzien_tygodnia, $dni_pracy_stom1)) {
  return $stomat1;   
 }
@@ -60,7 +60,7 @@ else if (in_array($sprawdzany_dzien_tygodnia, $dni_pracy_stom2)) {
             $date_arr = explode(" ", $datetime);
             $date= $date_arr[0];
             $time= $date_arr[1];
-            $stomatolog = kto_ma_dyzur($date, $stom1, $stom2);
+            $stomatolog = kto_ma_dyzur($date, $stom1, $stom2, $dni_pracy_stom1, $dni_pracy_stom2);
             $query = "INSERT INTO wizyty (id_pacjenta, id_stomatologa, data, godzina) VALUES ('0', '$stomatolog', :date, :time);";
             $statement = $connect->prepare($query);
 
