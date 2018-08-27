@@ -8,7 +8,6 @@ require_once '../config/param_stomatolog.php';
 $this->title = 'REZERWACJA';
 $this->params['breadcrumbs'][] = $this->title;
 
-/*$this->registerJs($DragJS);*/
 ?>
 <div class="site-index">
 
@@ -79,6 +78,7 @@ function(start, end) {
     });} 
 }
 EOF;
+// Chwilowo nieużywane - ale można uruchomić w celu edycji w kalendarzu
 $JSEventClick = <<<EOF
 function(calEvent, jsEvent, view) {
 
@@ -145,8 +145,6 @@ EOF;
             ]);
 }    
         ?> 
-        
-        
 
     </div>
 </div>
