@@ -1,0 +1,45 @@
+<?php
+
+use yii\helpers\Html;
+use yii\grid\GridView;
+
+/* @var $this yii\web\View */
+/* @var $searchModel app\models\NewUserAdminSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = 'New User Admins';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="new-user-admin-index">
+
+    <h1><?= Html::encode($this->title) ?></h1>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <p>
+        <?= Html::a('Create New User Admin', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'id',
+            'username',
+            'email:email',
+            'password',
+            'authKey',
+            //'accessToken',
+            //'role',
+            //'mieszka',
+            //'tel',
+            //'imie',
+            //'nazwisko',
+            //'notatka',
+            //'pesel',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+</div>
