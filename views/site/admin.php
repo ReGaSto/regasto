@@ -18,7 +18,7 @@ if (Yii::$app->user->identity->role === 30){
     ?>
         <p class="lead">Z sukcesem otworzyłeś tą stronę!</p>
 
-        <p><a class="btn btn-lg btn-success" href="<?php echo Url::toRoute('kalendarz-admin/index'); ?>">Zacznij zarządzać kalendarzem &raquo;</a></p>
+        <p><a class="btn btn-lg btn-success" href="<?php echo Url::toRoute('wizyty-admin/index'); ?>">Zacznij zarządzać tabelą rezerwacji wizyt &raquo;</a></p>
     </div>
 
     <div class="body-content">

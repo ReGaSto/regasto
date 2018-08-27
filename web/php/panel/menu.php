@@ -15,14 +15,14 @@
           <?php
       if(isset($_SESSION['zalogowany']))
       {
-          echo '<a class="nav-item nav-link" href="przegladanie.php">Przeglądanie</a>
-                <a class="nav-item nav-link" href="dodawanie.php">Dodawanie</a>
-                <a class="nav-item nav-link" href="odejmowanie.php">Odejmowanie</a>
-                <a class="nav-item nav-link" href="zmienianie.php">Zmienianie</a>
-                <a class="nav-item nav-link" href="plan.php">Plan</a>
-                <a class="nav-item nav-link" href="recepta.php">Recepta</a>
-                <a class="nav-item nav-link" href="PDO_Terminy.php">Wolne<br>Terminy</a>
-                <a class="nav-item nav-link" href="PDO_Wolne.php">Dni<br>Wolne</a>
+          echo '<a class="nav-item nav-link border-right border-left" href="przegladanie.php">Przeglądanie<br>Bazy<br>użytkowników</a>
+                <a class="nav-item nav-link border-right" href="dodawanie.php">Dodawanie<br>Użytkowników</a>
+                <a class="nav-item nav-link border-right" href="odejmowanie.php">Operacje<br>Zaawansowane</a>
+                <a class="nav-item nav-link border-right" href="zmienianie.php">Edycja<br>danych<br>użytkowników</a>
+                <a class="nav-item nav-link border-right" href="plan.php">Plan<br>Dnia</a>
+                <a class="nav-item nav-link border-right" href="recepta.php">Recepta</a>
+                <a class="nav-item nav-link border-right" href="PDO_Terminy.php">Wolne<br>Terminy</a>
+                <a class="nav-item nav-link border-right" href="PDO_Wolne.php">Dni<br>Wolne</a>
                 <a class="nav-item nav-link" href="wylogowano.php">Wyloguj</a>';
       }
       else {
