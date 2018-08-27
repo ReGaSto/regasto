@@ -20,4 +20,4 @@ session_start();
         
         <title>Panel pracownika</title>
     </head>
-    <body>
+    <body style="padding-bottom: 10px">

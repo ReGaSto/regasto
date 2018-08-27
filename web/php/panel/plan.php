@@ -61,5 +61,5 @@ echo '</tr></table></div>';
             {
                 echo "Ta strona przeznaczona jest tylko dla lekarzy.";
             }
-
+echo "</div>";
     require_once 'stopka.php';
