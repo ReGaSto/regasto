@@ -33,7 +33,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Html::img('@web/images/logo.jpg', ['alt'=>Yii::$app->name]),
+        'brandLabel' => Html::img('http://pp43704.wsbpoz.solidhost.pl/ReGaSto/logo.jpg', ['alt'=>Yii::$app->name]),
         //'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [

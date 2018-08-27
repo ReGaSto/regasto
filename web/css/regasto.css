@@ -41,3 +41,11 @@ div.fullcalendar, .grid-view {
     position: relative;
 }
 
+        .navbar-brand {
+            padding: 3px;
+        }
+        .navbar-brand img {
+            height: 100%;
+        }
+
+
