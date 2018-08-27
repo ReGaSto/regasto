@@ -19,11 +19,10 @@ elseif (isset($_SESSION['role']))
     unset($_SESSION['role']);
     echo 'role';
 }
-//$_SESSION = array();
-
-        //session_destroy();
+//Można też opróżnic tablicę SESSION i POST np. w ten sposób: $_SESSION = array(); co wykorzystałem w pliku powitanie.
+//session_destroy();
         require_once 'naglowek.php';
-        session_unset();
+        session_unset(); // sprawdzałem różne sposoby i zostawiłem ten  M.Kurant
         require_once 'menu.php';
 ?>
     <div class="container">  

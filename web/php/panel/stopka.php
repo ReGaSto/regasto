@@ -13,3 +13,5 @@
 
     </body>
 </html>
+
+<!--stopka to jest stopka z użyciem Bootstrapa-->

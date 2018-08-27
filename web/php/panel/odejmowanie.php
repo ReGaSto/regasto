@@ -6,7 +6,7 @@ require_once 'menu.php';
 <h1>Operacje zaawansowane</h1>
 </br>
 <?php
-/*Tutaj możemy usuwać użytkowników, przeglądać strukturę tabel z bazy i wykonywać zapytania SQL
+/* Tutaj możemy usuwać użytkowników, przeglądać strukturę tabel z bazy i wykonywać zapytania SQL
  * M.Kurant
  */
 
@@ -14,7 +14,7 @@ if (isset($_SESSION['zalogowany'], $_POST['usun']) && ($_SESSION['role'] === '30
     $uem = $_POST['email'];
     $unaz = $_POST['nazwisko'];
     $osql = "DELETE FROM new_user WHERE email='$uem' AND nazwisko='$unaz'";
-   
+
     $oresult = $connect->query($osql);
     echo "Usunięto użytkownika <b>$uem</b>";
 } else {
@@ -23,7 +23,7 @@ if (isset($_SESSION['zalogowany'], $_POST['usun']) && ($_SESSION['role'] === '30
 
 if (isset($_SESSION['zalogowany'], $_POST['wsql'], $_POST['wykonaj']) && ($_SESSION['role'] === '30')) {
     $wsql = $_POST['wsql'];
-    
+
     $wresult = $connect->query($wsql);
     echo "Zapytanie <b>$wsql</b> wykonano!";
 } else {
@@ -40,16 +40,16 @@ if (isset($_SESSION['zalogowany']) && ($_SESSION['role'] === '30')) {
                     <div class="col">
                         <label for="etab">Wybierz nazwę tabeli</label>
                         <select class="form-control form-control-sm" name='etab' required><option value=' '> </option>
-    <?php
-    //Sposób na uzyskania nagłówków tabeli z bazy danych
-    $tsql = "SHOW TABLES";
-    
-    $tresult = $connect->query($tsql);
+                            <?php
+                            //Sposób na uzyskania nagłówków tabeli z bazy danych
+                            $tsql = "SHOW TABLES";
 
-    while ($trow = $tresult->fetch(PDO::FETCH_COLUMN)) {
-        echo"<option value=$trow>$trow</option>";
-    }
-    ?>
+                            $tresult = $connect->query($tsql);
+
+                            while ($trow = $tresult->fetch(PDO::FETCH_COLUMN)) {
+                                echo"<option value=$trow>$trow</option>";
+                            }
+                            ?>
                         </select>
                     </div>
                     <div class="col"></br>
@@ -67,14 +67,14 @@ if (isset($_SESSION['zalogowany']) && ($_SESSION['role'] === '30')) {
         $esql2 = "SELECT COUNT('id') AS ile FROM $etab";
         $eresult2 = $connect->query($esql2);
         $eile = $eresult2->execute();
-        
+
         $i = $eresult->fetch(PDO::FETCH_NUM);
-        
+
 
         for ($eile = 0; $eile < $i; $eile++) {
             echo '<table class="table table-hover table-sm table-bordered"><caption>Struktura tabeli <b>' . $etab . '</b>.</caption><thead class="thead-light">';
             echo "<th>$i[0]</th>";
-           
+
             while ($i = $eresult->fetch(PDO::FETCH_NUM)) {
 
                 echo "<th>{$i[$eile]}</th>";
