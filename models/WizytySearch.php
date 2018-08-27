@@ -11,6 +11,8 @@ use yii\data\ActiveDataProvider;
 class WizytySearch extends Wizyty
 {
 
+
+
     /**
      *
      * {@inheritdoc}
@@ -59,6 +61,7 @@ class WizytySearch extends Wizyty
      */
     public function searchVacant($params)
     {
+        $dzisiaj = date('Y-m-d', time());
         $query = Wizyty::find();
         
         // add conditions that should always apply here
@@ -71,7 +74,8 @@ class WizytySearch extends Wizyty
             ->where([
             '>=',
             'data',
-            'DATE(NOW())'
+            $dzisiaj
+            //'DATE(NOW())'
         ])
             ->andWhere([
             '=',
