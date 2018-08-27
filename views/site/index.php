@@ -8,7 +8,7 @@ $this->title = 'ReGaSto';
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Witaj <?php echo \Yii::$app->user->identity->username; ?></strong>!</h1>
+        <h1>Witaj <strong><?php //echo \Yii::$app->user->identity->username; ?></strong>!</h1>
 
         <p class="lead">Zapraszamy do zapoznania się z ofertą gabinetu stomatologicznego "Ząbek".</p>
 

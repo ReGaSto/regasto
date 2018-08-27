@@ -267,12 +267,15 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === '30' )
                     </div>
                     
             </form>
+</div>
+</div>
         <?php
         }
             else
             {
                 echo "Nie masz uprawnień dostępu do tych danych";
             }
-
+            
+            echo "</div>";
     require_once 'stopka.php';
     
