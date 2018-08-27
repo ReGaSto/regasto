@@ -6,10 +6,8 @@ SET time_zone = "+00:00";
 
 
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `kalendarz2`  AS  select `wizyty`.`data` AS `data`,`wizyty`.`godzina` AS `godzina`,`wizyty`.`id_pacjenta` AS `id_pacjenta`,`wizyty`.`id_stomatologa` AS `id_stomatologa` from `wizyty` where ((`wizyty`.`id_pacjenta` <> 0) or (`wizyty`.`id_pacjenta` <> NULL)) ;
+CREATE VIEW `kalendarz2`  AS  select `wizyty`.`data` AS `data`,`wizyty`.`godzina` AS `godzina`,`wizyty`.`id_pacjenta` AS `id_pacjenta`,`wizyty`.`id_stomatologa` AS `id_stomatologa` from `wizyty` where ((`wizyty`.`id_pacjenta` <> 0) or (`wizyty`.`id_pacjenta` <> NULL)) ;
 
 
 
 COMMIT;
-
-
