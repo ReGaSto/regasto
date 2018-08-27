@@ -11,7 +11,7 @@
         $komunikat = $_POST['komunikat'];
         
             $mailsql = "SELECT email FROM new_user where email<>' '";
-            $mailek = $connect->query($mailsql);
+            $mailek = $connect->query($mailsql); 
             $mailek->execute();
                         
             $odbiornik = $mailek->fetch( PDO::FETCH_ASSOC );
