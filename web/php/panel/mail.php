@@ -2,7 +2,7 @@
         require_once 'naglowek.php';
         require_once 'menu.php';
         require_once '../../../config/param_db.php';
-        require_once 'PDO_bd.php';
+        require_once 'PDO_bd.php'; 
 ?>
         <h1>Komunikacja masowa</h1>
  <?php       
